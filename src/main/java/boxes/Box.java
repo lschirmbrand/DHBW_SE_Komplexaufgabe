@@ -9,9 +9,8 @@ import java.util.ArrayList;
 
 public class Box implements IBox {
     private String id;
-    private BoxLayer[] layers = new BoxLayer[5];
-
-    private IDGenerator idGenerator = new IDGenerator();
+    private final BoxLayer[] layers = new BoxLayer[5];
+    private final IDGenerator idGenerator = new IDGenerator();
 
     public Box() {
         generateID();
@@ -20,15 +19,15 @@ public class Box implements IBox {
     @Override
     public void generateID() {
         final int numberOfDigits = 5;
-        this.id = this.id = idGenerator.generateID(numberOfDigits);
+        this.id = idGenerator.generateID(numberOfDigits);
     }
 
     @Override
     public void fillBox(ArrayList<Package> packages) {
         for (int i = 0; i < layers.length; i++) {
             layers[i] = new BoxLayer(packages);
-            for (int j = 0; j < Configuration.instance.numberOfPackagesInBox; j++) {
-                packages.remove(0);
+            if (Configuration.instance.numberOfPackagesInBox > 0) {
+                packages.subList(0, Configuration.instance.numberOfPackagesInBox).clear();
             }
         }
     }
@@ -37,14 +36,10 @@ public class Box implements IBox {
         return id;
     }
 
-    public BoxLayer[] getLayers() {
-        return layers;
-    }
-
     public String getPackageIDs() {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < layers.length; i++) {
-            sb.append(layers[i].idsToString());
+        for (BoxLayer layer : layers) {
+            sb.append(layer.idsToString());
             sb.append("+");
         }
         sb.append("$");

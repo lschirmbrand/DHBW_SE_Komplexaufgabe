@@ -5,7 +5,7 @@ import boxes.Box;
 import java.util.ArrayList;
 
 public class PosCapacity {
-    private Box[] layers = new Box[3];
+    private final Box[] layers = new Box[3];
 
     public PosCapacity(ArrayList<Box> boxes){
         fillLayers(boxes);
@@ -16,7 +16,7 @@ public class PosCapacity {
         }
     }
 
-    public String LayersToString(){
-        return "";
+    public String LayerToString(int i){
+        return layers[i].getId();
     }
 }

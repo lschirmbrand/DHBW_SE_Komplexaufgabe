@@ -3,31 +3,33 @@ packages/Package.java
  packages.Package$PackageTypeE
 encryption/AES256.java
  encryption.AES256
-lkw/LKW.java
- lkw.LKW
-lkw/ILKW.java
- lkw.ILKW
+boxes/idGenerator/IDGenerator.java
+ boxes.idGenerator.IDGenerator
+boxes/IBox.java
+ boxes.IBox
 boxes/layers/BoxLayer.java
  boxes.layers.BoxLayer
 packages/IPackage.java
  packages.IPackage
 csvWriter/ICSVWriter.java
  csvWriter.ICSVWriter
-boxes/idGenerator/IDGenerator.java
- boxes.idGenerator.IDGenerator
-pallets/IPallet.java
- pallets.IPallet
-csvWriter/CSVWriter.java
- csvWriter.CSVWriter
-boxes/IBox.java
- boxes.IBox
-boxes/configuration/Configuration.java
- boxes.configuration.Configuration
-boxes/Box.java
- boxes.Box
-pallets/Pallet.java
- pallets.Pallet
-pallets/posCapacity/PosCapacity.java
- pallets.posCapacity.PosCapacity
+lkw/LKWTrailer.java
+ lkw.LKWTrailer
+lkw/LKW.java
+ lkw.LKW
 Application.java
  Application
+csvWriter/CSVWriter.java
+ csvWriter.CSVWriter
+pallets/posCapacity/PosCapacity.java
+ pallets.posCapacity.PosCapacity
+boxes/configuration/Configuration.java
+ boxes.configuration.Configuration
+lkw/ILKW.java
+ lkw.ILKW
+pallets/Pallet.java
+ pallets.Pallet
+boxes/Box.java
+ boxes.Box
+pallets/IPallet.java
+ pallets.IPallet

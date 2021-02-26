@@ -4,8 +4,6 @@ import boxes.Box;
 import lkw.LKW;
 import packages.Package;
 import pallets.Pallet;
-
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -50,7 +48,7 @@ public class CSVWriter implements ICSVWriter {
             sb.append('\n');
         }
 
-        try (PrintWriter writer = new PrintWriter(new File("base_package.csv"))) {
+        try (PrintWriter writer = new PrintWriter("base_package.csv")) {
             writer.write(sb.toString());
 
         } catch (FileNotFoundException e) {
@@ -69,7 +67,7 @@ public class CSVWriter implements ICSVWriter {
             sb.append('\n');
         }
 
-        try (PrintWriter writer = new PrintWriter(new File("base_box.csv"))) {
+        try (PrintWriter writer = new PrintWriter("base_box.csv")) {
             writer.write(sb.toString());
 
         } catch (FileNotFoundException e) {
@@ -82,7 +80,21 @@ public class CSVWriter implements ICSVWriter {
         StringBuilder sb = new StringBuilder();
 
         for(Pallet s : palletList){
-            
+            String[] lines = s.palletBoxesToString();
+            for (String line : lines) {
+                sb.append(s.getId());
+                sb.append(",");
+                sb.append(line);
+                sb.append(";");
+                sb.append('\n');
+            }
+        }
+
+        try (PrintWriter writer = new PrintWriter("base_pallet.csv")) {
+            writer.write(sb.toString());
+
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
         }
     }
 
