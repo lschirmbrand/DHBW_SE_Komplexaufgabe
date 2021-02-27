@@ -3,30 +3,28 @@ package packages;
 
 import boxes.idGenerator.IDGenerator;
 
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Package implements IPackage {
 
+    private final int contHeight = 2;
+    private final int contWidth = 2;
+    private final int contLength = 2;
     private String id;
     private char[][][] content;
     private int zipCode;
     private PackageTypeE packageType;
     private double weight;
-
     private IDGenerator idGenerator = new IDGenerator();
-
-    private final int contHeight = 10;
-    private final int contWidth = 10;
-    private final int contLength = 25;
-
-    public enum PackageTypeE {
-        NORMAL, EXPRESS, VALUE;
-    }
 
     public Package() {
         generateID();
         generateContent();
         generateZipCode();
+        generateSendingType();
         generateWeight();
     }
 
@@ -38,26 +36,14 @@ public class Package implements IPackage {
 
     @Override
     public void generateContent() {
+        List<Character> pool = IntStream.range(97, 123).mapToObj(value -> (char) value).collect(Collectors.toList());
+        pool.addAll(List.of('.', ':', '-', '!'));
+
         content = new char[contHeight][contWidth][contLength];
         for (int h = 0; h < contHeight; h++) {
             for (int w = 0; w < contWidth; w++) {
                 for (int l = 0; l < contLength; l++) {
-                    if(ThreadLocalRandom.current().nextInt(0, 1 + 1) == 0){
-                        //Alphabetic (a...z)
-                        this.content[h][w][l] = (char)ThreadLocalRandom.current().nextInt(97, 122 + 1);
-                    }else{
-                        //Special Chars (".";":";"-";"!")
-                        int temp = ThreadLocalRandom.current().nextInt(0, 3 + 1);
-                        if(temp==0){
-                            this.content[h][w][l] = '.';
-                        }else if(temp == 1){
-                            this.content[h][w][l] = ':';
-                        }else if(temp == 2){
-                            this.content[h][w][l] = '-';
-                        }else{
-                            this.content[h][w][l] = '!';
-                        }
-                    }
+                    this.content[h][w][l] = pool.get(ThreadLocalRandom.current().nextInt(0, pool.size()));
                 }
             }
         }
@@ -70,13 +56,20 @@ public class Package implements IPackage {
 
     @Override
     public void generateSendingType() {
+        int rand = ThreadLocalRandom.current().nextInt(3);
 
+        packageType = switch(rand) {
+          case 0 -> PackageTypeE.NORMAL;
+          case 1 -> PackageTypeE.EXPRESS;
+          case 2 -> PackageTypeE.VALUE;
+            default -> throw new IllegalStateException("Unexpected value: " + rand);
+        };
     }
 
     @Override
     public void generateWeight() {
         float temp = ThreadLocalRandom.current().nextInt(100, 500 + 1);
-        this.weight = temp/100;
+        this.weight = temp / 100;
     }
 
     public String getId() {
@@ -87,25 +80,17 @@ public class Package implements IPackage {
         return content;
     }
 
-    public String getContentToString(){
+    public String getContentToString() {
         StringBuilder sb = new StringBuilder();
-        for(int h = 0; h<contHeight; h++){
-            for (int w = 0; w<contWidth; w++ ){
-                for(int l = 0; l<contLength; l++){
-                    sb.append(this.content[h][w][l]);
-                    if(l == contLength-1){
-                        sb.append("#");
-                    }else{
-                        sb.append("|");
-                    }
-                }
-                if(w == contHeight-1) {
-                    sb.append("+");
+        for (int h = 0; h < contHeight; h++) {
+            sb.append("[");
+            for (int w = 0; w < contWidth; w++) {
+                sb.append(this.content[h][w]);
+                if (w != contWidth - 1) {
+                    sb.append("|");
                 }
             }
-            if(h == contHeight-1){
-                sb.append("$");
-            }
+            sb.append("]");
         }
         return sb.toString();
     }
@@ -120,6 +105,10 @@ public class Package implements IPackage {
 
     public double getWeight() {
         return weight;
+    }
+
+    public enum PackageTypeE {
+        NORMAL, EXPRESS, VALUE
     }
 
 
