@@ -1,11 +1,4 @@
-package csvWriter;
-
-import java.util.ArrayList;
-
-import boxes.Box;
-import lkw.LKW;
-import packages.Package;
-import pallets.Pallet;
+package csvTools;
 
 public interface ICSVWriter {
     public void writePackage();

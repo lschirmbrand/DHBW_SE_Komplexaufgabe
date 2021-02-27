@@ -1,7 +1,10 @@
 import boxes.Box;
-import boxes.configuration.Configuration;
-import csvWriter.CSVWriter;
+import configuration.Configuration;
+import csvTools.CSVReader;
+import csvTools.CSVWriter;
+import employee.Administrator;
 import lkw.LKW;
+import packageSortingCenter.PackageSortingCenter;
 import packages.Package;
 import pallets.Pallet;
 import java.util.ArrayList;
@@ -15,7 +18,7 @@ public class Application {
         }
 
         csvWriter.setPackageList(packages);
-        csvWriter.writePackage();
+        //csvWriter.writePackage();
 
         ArrayList<Box> boxes = new ArrayList<>();
         for(int i = 0; i<Configuration.instance.numberOfBoxes; i++){
@@ -24,7 +27,7 @@ public class Application {
         }
 
         csvWriter.setBoxList(boxes);
-        csvWriter.writeBox();
+        //csvWriter.writeBox();
 
         ArrayList<Pallet> pallets = new ArrayList<>();
         for(int i = 0; i<Configuration.instance.numberOfPallets; i++){
@@ -33,13 +36,27 @@ public class Application {
         }
 
         csvWriter.setPalletList(pallets);
-        csvWriter.writePallet();
+        //csvWriter.writePallet();
 
         ArrayList<LKW> lkws = new ArrayList<>();
         for(int i = 0; i<Configuration.instance.numberOfLKWS; i++){
             lkws.add(new LKW());
             lkws.get(i).fillTrailer(pallets);
         }
+
+        csvWriter.setLKWList(lkws);
+        csvWriter.writeLKW();
+
+        Administrator administrator = new Administrator();
+
+
+        CSVReader csvReader = new CSVReader();
+        PackageSortingCenter packageSortingCenter = new PackageSortingCenter();
+
+        packageSortingCenter.init();
+
+        //csvReader.readLKW();
+
         int i = 0;
     }
 }

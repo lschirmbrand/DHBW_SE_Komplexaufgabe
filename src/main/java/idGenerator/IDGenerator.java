@@ -1,4 +1,4 @@
-package boxes.idGenerator;
+package idGenerator;
 
 import java.util.concurrent.ThreadLocalRandom;
 

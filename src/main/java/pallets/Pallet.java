@@ -1,7 +1,7 @@
 package pallets;
 
 import boxes.Box;
-import boxes.configuration.Configuration;
+import configuration.Configuration;
 import pallets.posCapacity.PosCapacity;
 
 import java.util.ArrayList;

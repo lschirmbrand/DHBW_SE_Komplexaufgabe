@@ -1,7 +1,7 @@
 package boxes;
 
-import boxes.configuration.Configuration;
-import boxes.idGenerator.IDGenerator;
+import configuration.Configuration;
+import idGenerator.IDGenerator;
 import boxes.layers.BoxLayer;
 import packages.Package;
 

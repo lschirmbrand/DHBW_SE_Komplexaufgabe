@@ -1,4 +1,4 @@
-package csvWriter;
+package csvTools;
 
 import boxes.Box;
 import lkw.LKW;
@@ -100,6 +100,26 @@ public class CSVWriter implements ICSVWriter {
 
     @Override
     public void writeLKW() {
+
+        StringBuilder sb = new StringBuilder();
+
+        for(LKW s : lkwList){
+            String[] lines = s.getTrailer().lkwPalletsToString();
+
+            for(String line : lines){
+                sb.append(s.getId());
+                sb.append(",");
+                sb.append(line);
+                sb.append('\n');
+            }
+        }
+
+        try (PrintWriter writer = new PrintWriter("base_lkw.csv")) {
+            writer.write(sb.toString());
+
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 }
