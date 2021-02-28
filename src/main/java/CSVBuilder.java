@@ -65,16 +65,5 @@ public class CSVBuilder {
         csvWriter.setLKWList(lkws);
         csvWriter.writeLKW();
 
-        Administrator administrator = new Administrator();
-
-
-        CSVReader csvReader = new CSVReader();
-        PackageSortingCenter packageSortingCenter = new PackageSortingCenter();
-
-        packageSortingCenter.init();
-
-        //csvReader.readLKW();
-
-        int i = 0;
     }
 }
