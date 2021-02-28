@@ -1,6 +1,6 @@
 package employee;
 
-import idCard.IDCard;
+import employee.idCard.IDCard;
 
 public class Supervisor {
     private int id;

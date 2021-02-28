@@ -6,7 +6,7 @@ public class NextCommand implements ICommand {
 
     private final PackageSortingCenter packageSortingCenter;
 
-    public NextCommand(PackageSortingCenter packageSortingCenter){
+    public NextCommand(PackageSortingCenter packageSortingCenter) {
         this.packageSortingCenter = packageSortingCenter;
     }
 

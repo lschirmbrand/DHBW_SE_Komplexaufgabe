@@ -18,4 +18,12 @@ public enum Configuration {
 
 
     public String superPin = "superPinKlasse";
+
+    public String aesAlgorithm = "AES";
+    public String desAlgorithm = "DES";
+
+    public String secretKey = "dhbw";
+
+    public String algorithmBM = "bm";
+    public String algorithmRK = "rk";
 }

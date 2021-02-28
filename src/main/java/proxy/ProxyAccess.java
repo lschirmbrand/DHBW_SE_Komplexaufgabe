@@ -29,7 +29,7 @@ public class ProxyAccess implements IAccess {
     @Override
     public void grantNext() {
         if ((employee.getRole() == EmployeeRoles.SUPERVISOR)
-            || (employee.getRole() == EmployeeRoles.OPERATOR)) {
+                || (employee.getRole() == EmployeeRoles.OPERATOR)) {
             realAccess = new RealAccess(this.employee);
             realAccess.grantNext();
         } else {
@@ -49,48 +49,44 @@ public class ProxyAccess implements IAccess {
 
     @Override
     public void grantUnlock() {
-        if((employee.getRole() == EmployeeRoles.SUPERVISOR)){
+        if ((employee.getRole() == EmployeeRoles.SUPERVISOR)) {
             realAccess = new RealAccess(this.employee);
             realAccess.grantUnlock();
-        }
-        else{
+        } else {
             System.out.println("Berechtigungsstufe nicht ausreichend");
         }
     }
 
     @Override
     public void grantChangeAlgorithm() {
-        if((employee.getRole() == EmployeeRoles.SUPERVISOR)){
+        if ((employee.getRole() == EmployeeRoles.SUPERVISOR)) {
             realAccess = new RealAccess(this.employee);
             realAccess.grantChangeAlgorithm();
-        }
-        else{
+        } else {
             System.out.println("Berechtigungsstufe nicht ausreichend");
         }
     }
 
     @Override
     public void grantShowStatistics() {
-        if((employee.getRole() == EmployeeRoles.SUPERVISOR)
-            || (employee.getRole() == EmployeeRoles.ADMINISTRATOR)
-            || (employee.getRole() == EmployeeRoles.OPERATOR)
-            || (employee.getRole() == EmployeeRoles.DATAANALYST)){
+        if ((employee.getRole() == EmployeeRoles.SUPERVISOR)
+                || (employee.getRole() == EmployeeRoles.ADMINISTRATOR)
+                || (employee.getRole() == EmployeeRoles.OPERATOR)
+                || (employee.getRole() == EmployeeRoles.DATAANALYST)) {
             realAccess = new RealAccess(this.employee);
             realAccess.grantShowStatistics();
-        }
-        else{
+        } else {
             System.out.println("Berechtigungsstufe nicht ausreichend");
         }
     }
 
     @Override
     public void grantShutdown() {
-        if((employee.getRole() == EmployeeRoles.SUPERVISOR)
-            || (employee.getRole() == EmployeeRoles.ADMINISTRATOR)){
+        if ((employee.getRole() == EmployeeRoles.SUPERVISOR)
+                || (employee.getRole() == EmployeeRoles.ADMINISTRATOR)) {
             realAccess = new RealAccess(this.employee);
             realAccess.grantShutdown();
-        }
-        else{
+        } else {
             System.out.println("Berechtigungsstufe nicht ausreichend");
         }
     }

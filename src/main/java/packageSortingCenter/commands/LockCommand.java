@@ -5,7 +5,7 @@ import packageSortingCenter.PackageSortingCenter;
 public class LockCommand implements ICommand {
     private final PackageSortingCenter packageSortingCenter;
 
-    public LockCommand(PackageSortingCenter packageSortingCenter){
+    public LockCommand(PackageSortingCenter packageSortingCenter) {
         this.packageSortingCenter = packageSortingCenter;
     }
 
