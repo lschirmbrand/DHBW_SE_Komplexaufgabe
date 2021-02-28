@@ -27,3 +27,7 @@ hs_err_pid*
 base_box.csv
 base_package.csv
 *.csv
+
+
+.gradle
+build
