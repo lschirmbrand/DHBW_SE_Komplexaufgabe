@@ -1,13 +1,9 @@
-import boxes.Box;
 import configuration.Configuration;
-import csvTools.CSVReader;
-import csvTools.CSVWriter;
-import employee.Administrator;
-import csvTools.CSVWriter;
-import lkw.LKW;
-import packageSortingCenter.PackageSortingCenter;
-import packages.Package;
-import pallets.Pallet;
+import packagingElements.boxes.Box;
+import packagingElements.packages.Package;
+import packagingElements.pallets.Pallet;
+import utillity.csvTools.CSVWriter;
+import vehicle.lkw.LKW;
 
 import java.util.ArrayList;
 import java.util.List;
