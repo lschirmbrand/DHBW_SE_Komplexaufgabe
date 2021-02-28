@@ -1,8 +1,8 @@
 package employee;
 
-import idCard.IDCard;
+import employee.idCard.IDCard;
 
-public class DataAnalyst extends Employee{
+public class DataAnalyst extends Employee {
     private int id;
     private String name;
 

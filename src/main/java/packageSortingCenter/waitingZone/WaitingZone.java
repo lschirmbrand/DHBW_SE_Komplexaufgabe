@@ -1,15 +1,15 @@
 package packageSortingCenter.waitingZone;
 
-import lkw.LKW;
+import vehicle.lkw.LKW;
 
 public class WaitingZone {
     private LKW lkwWaitingSpace;
 
-    public WaitingZone(LKW lkw){
+    public WaitingZone(LKW lkw) {
         this.lkwWaitingSpace = lkw;
     }
 
-    private void setLKW(LKW lkw){
+    private void setLKW(LKW lkw) {
         this.lkwWaitingSpace = lkw;
     }
 }

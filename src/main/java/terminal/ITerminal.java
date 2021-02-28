@@ -1,6 +1,6 @@
 package terminal;
 
-import idCard.IDCard;
+import employee.idCard.IDCard;
 
 public interface ITerminal {
     void idCardSwipe(IDCard idCard);

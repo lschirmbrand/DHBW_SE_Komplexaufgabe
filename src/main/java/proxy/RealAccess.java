@@ -3,9 +3,9 @@ package proxy;
 import control.ControlUnit;
 import employee.Employee;
 
-public class RealAccess implements IAccess{
+public class RealAccess implements IAccess {
 
-    private Employee employee;
+    private final Employee employee;
     private ControlUnit controlUnit;
 
     public RealAccess(Employee employee) {

@@ -1,24 +1,18 @@
 package employee;
 
 import configuration.Configuration;
-import idCard.IDCard;
+import employee.idCard.IDCard;
 
-public class Administrator  extends Employee {
+public class Administrator extends Employee {
 
-    public enum ProfileTypeE{
-        A,B,C;
-    }
-    private int id;
-    private String name;
-    private String pin;
+    private final int id;
+    private final String name;
+    private final String pin;
+    private final EmployeeRoles role = EmployeeRoles.ADMINISTRATOR;
+    private final ProfileTypeE profileType;
+    private final IDCard idCard;
 
-    private EmployeeRoles role = EmployeeRoles.ADMINISTRATOR;
-    private ProfileTypeE profileType;
-
-    private IDCard idCard;
-
-
-    public Administrator(){
+    public Administrator() {
         this.id = 1337;
         this.name = Configuration.instance.nameOfAdministrator;
         this.profileType = ProfileTypeE.A;
@@ -29,6 +23,10 @@ public class Administrator  extends Employee {
 
     public EmployeeRoles getRole() {
         return role;
+    }
+
+    public enum ProfileTypeE {
+        A, B, C
     }
 
 }
