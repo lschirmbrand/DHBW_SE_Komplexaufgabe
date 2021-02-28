@@ -1,6 +1,6 @@
 package lkw;
 
-import boxes.idGenerator.IDGenerator;
+import idGenerator.IDGenerator;
 import pallets.Pallet;
 
 import java.util.ArrayList;

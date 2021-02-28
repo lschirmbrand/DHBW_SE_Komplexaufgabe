@@ -1,12 +1,11 @@
 package pallets;
 
 import boxes.Box;
-import boxes.configuration.Configuration;
-import pallets.posCapacity.PosCapacity;
+import configuration.Configuration;
 
 import java.util.ArrayList;
 
-public class Pallet implements IPallet {
+public class Pallet {
 
     private final PosCapacity[][] position = new PosCapacity[2][2];
     private int id;
@@ -15,12 +14,10 @@ public class Pallet implements IPallet {
         generateID(id);
     }
 
-    @Override
     public void generateID(int id) {
         this.id = id + 1;
     }
 
-    @Override
     public void fillPallet(ArrayList<Box> boxes) {
         for (int i = 0; i < position.length; i++) {
             for (int j = 0; j < position[i].length; j++) {

@@ -1,4 +1,4 @@
-package boxes.configuration;
+package configuration;
 
 public enum Configuration {
     instance;

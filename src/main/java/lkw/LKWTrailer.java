@@ -1,7 +1,5 @@
 package lkw;
 
-import boxes.configuration.Configuration;
-import boxes.layers.BoxLayer;
 import pallets.Pallet;
 
 import java.util.ArrayList;

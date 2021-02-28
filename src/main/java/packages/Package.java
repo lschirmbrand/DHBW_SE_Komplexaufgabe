@@ -1,7 +1,7 @@
 package packages;
 
 
-import boxes.idGenerator.IDGenerator;
+import idGenerator.IDGenerator;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;

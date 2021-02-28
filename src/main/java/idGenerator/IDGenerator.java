@@ -1,4 +1,4 @@
-package boxes.idGenerator;
+package idGenerator;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -18,8 +18,6 @@ public class IDGenerator {
             }
         }
 
-        String idString = new String(id);
-
-        return idString;
+        return new String(id);
     }
 }

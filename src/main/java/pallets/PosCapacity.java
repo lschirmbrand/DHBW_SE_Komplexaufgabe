@@ -1,4 +1,4 @@
-package pallets.posCapacity;
+package pallets;
 
 import boxes.Box;
 

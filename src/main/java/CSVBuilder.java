@@ -1,5 +1,5 @@
 import boxes.Box;
-import boxes.configuration.Configuration;
+import configuration.Configuration;
 import csvWriter.CSVWriter;
 import lkw.LKW;
 import packages.Package;
