@@ -8,17 +8,17 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Package implements IPackage {
+public class Package {
 
-    private final int contHeight = 2;
-    private final int contWidth = 2;
-    private final int contLength = 2;
+    private final int contHeight = 10;
+    private final int contWidth = 10;
+    private final int contLength = 25;
+    private final IDGenerator idGenerator = new IDGenerator();
     private String id;
-    private char[][][] content;
+    private String[][] content;
     private int zipCode;
     private PackageTypeE packageType;
     private double weight;
-    private IDGenerator idGenerator = new IDGenerator();
 
     public Package() {
         generateID();
@@ -28,55 +28,62 @@ public class Package implements IPackage {
         generateWeight();
     }
 
-    @Override
-    public void generateID() {
+    private void generateID() {
         final int numberOfDigits = 6;
         this.id = idGenerator.generateID(numberOfDigits);
     }
 
-    @Override
-    public void generateContent() {
+    private void generateContent() {
         List<Character> pool = IntStream.range(97, 123).mapToObj(value -> (char) value).collect(Collectors.toList());
         pool.addAll(List.of('.', ':', '-', '!'));
 
-        content = new char[contHeight][contWidth][contLength];
+        content = new String[contHeight][contWidth];
         for (int h = 0; h < contHeight; h++) {
             for (int w = 0; w < contWidth; w++) {
+                content[h][w] = "";
                 for (int l = 0; l < contLength; l++) {
-                    this.content[h][w][l] = pool.get(ThreadLocalRandom.current().nextInt(0, pool.size()));
+                    content[h][w] += pool.get(ThreadLocalRandom.current().nextInt(0, pool.size()));
                 }
             }
         }
     }
 
-    @Override
-    public void generateZipCode() {
+    private void generateZipCode() {
         this.zipCode = ThreadLocalRandom.current().nextInt(1067, 99998 + 1);
     }
 
-    @Override
-    public void generateSendingType() {
-        int rand = ThreadLocalRandom.current().nextInt(3);
-
-        packageType = switch(rand) {
-          case 0 -> PackageTypeE.NORMAL;
-          case 1 -> PackageTypeE.EXPRESS;
-          case 2 -> PackageTypeE.VALUE;
-            default -> throw new IllegalStateException("Unexpected value: " + rand);
-        };
+    private void generateSendingType() {
+        double rand = ThreadLocalRandom.current().nextDouble();
+        if (rand < 0.8) {
+            this.packageType = PackageTypeE.NORMAL;
+        } else if (rand >= 0.8 && rand < 0.95) {
+            this.packageType = PackageTypeE.EXPRESS;
+        } else {
+            this.packageType = PackageTypeE.VALUE;
+        }
     }
 
-    @Override
-    public void generateWeight() {
+    private void generateWeight() {
         float temp = ThreadLocalRandom.current().nextInt(100, 500 + 1);
         this.weight = temp / 100;
+    }
+
+    public void addExplosive() {
+        String exp = "exp|os!ve";
+        int h = ThreadLocalRandom.current().nextInt(contHeight);
+        int w = ThreadLocalRandom.current().nextInt(contWidth);
+        int l = ThreadLocalRandom.current().nextInt(contLength - exp.length() + 1);
+
+        String line = content[h][w];
+        line = line.substring(0, l) + exp + line.substring(l + exp.length());
+        content[h][w] = line;
     }
 
     public String getId() {
         return id;
     }
 
-    public char[][][] getContent() {
+    public String[][] getContent() {
         return content;
     }
 
@@ -110,6 +117,4 @@ public class Package implements IPackage {
     public enum PackageTypeE {
         NORMAL, EXPRESS, VALUE
     }
-
-
 }
