@@ -1,7 +1,11 @@
 import boxes.Box;
 import configuration.Configuration;
-import csvWriter.CSVWriter;
+import csvTools.CSVReader;
+import csvTools.CSVWriter;
+import employee.Administrator;
+import csvTools.CSVWriter;
 import lkw.LKW;
+import packageSortingCenter.PackageSortingCenter;
 import packages.Package;
 import pallets.Pallet;
 
@@ -57,6 +61,20 @@ public class CSVBuilder {
             lkws.add(new LKW());
             lkws.get(i).fillTrailer(pallets);
         }
+
+        csvWriter.setLKWList(lkws);
+        csvWriter.writeLKW();
+
+        Administrator administrator = new Administrator();
+
+
+        CSVReader csvReader = new CSVReader();
+        PackageSortingCenter packageSortingCenter = new PackageSortingCenter();
+
+        packageSortingCenter.init();
+
+        //csvReader.readLKW();
+
         int i = 0;
     }
 }

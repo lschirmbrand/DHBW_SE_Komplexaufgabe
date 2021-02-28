@@ -11,7 +11,7 @@ import java.security.spec.KeySpec;
 import java.util.Base64;
 
 public class AES256 {
-    private static final String SECRET_KEY = "secretKeyNooneKnows";
+    private static final String SECRET_KEY = "dhbw";
     private static final String SALT = "iDOntCareWhatToPutHere";
 
     public static String encrypt(String strToEncrypt) {

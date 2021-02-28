@@ -4,10 +4,13 @@ import idGenerator.IDGenerator;
 import pallets.Pallet;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LKW {
+
     LKWTrailer trailer;
-    private final String id;
+
+    private String id;
 
     public LKW(){
         IDGenerator idGenerator = new IDGenerator();
@@ -19,4 +22,19 @@ public class LKW {
         trailer.loadTrailer(pallets);
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public LKWTrailer getTrailer() {
+        return trailer;
+    }
+
+    public void fillTrailerFromList(List<String[]> lkwContent) {
+        trailer.loadTrailerFromList(lkwContent);
+    }
 }
