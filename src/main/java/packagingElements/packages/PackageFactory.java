@@ -1,5 +1,6 @@
 package packagingElements.packages;
 
+import configuration.Configuration;
 import utillity.idGenerator.IDGenerator;
 
 import java.util.List;
@@ -11,9 +12,9 @@ public class PackageFactory {
 
     private static final IDGenerator idGenerator = new IDGenerator();
 
-    private static final int contHeight = 10;
-    private static final int contWidth = 10;
-    private static final int contLength = 25;
+    private static final int contHeight = Configuration.instance.packageHeight;
+    private static final int contWidth = Configuration.instance.packageWidth;
+    private static final int contLength = Configuration.instance.packageLength;
 
     public static Package buildPackage() {
         // id

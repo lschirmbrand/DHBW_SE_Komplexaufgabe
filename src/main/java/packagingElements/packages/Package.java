@@ -22,11 +22,11 @@ public class Package {
 
     public void addExplosive() {
         String exp = "exp|os!ve";
-        int contHeight = 10;
+        int contHeight = content.length;
         int h = ThreadLocalRandom.current().nextInt(contHeight);
-        int contWidth = 10;
+        int contWidth = content[0].length;
         int w = ThreadLocalRandom.current().nextInt(contWidth);
-        int contLength = 25;
+        int contLength = content[0][0].length();
         int l = ThreadLocalRandom.current().nextInt(contLength - exp.length() + 1);
 
         String line = content[h][w];
@@ -44,11 +44,11 @@ public class Package {
 
     public String getContentToString() {
         StringBuilder sb = new StringBuilder();
-        for (int h = 0; h < content.length; h++) {
+        for (String[] strings : content) {
             sb.append("[");
-            for (int w = 0; w < content[h].length; w++) {
-                sb.append(this.content[h][w]);
-                if (w != content[h].length - 1) {
+            for (int w = 0; w < strings.length; w++) {
+                sb.append(strings[w]);
+                if (w != strings.length - 1) {
                     sb.append("|");
                 }
             }

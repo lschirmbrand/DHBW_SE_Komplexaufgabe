@@ -1,6 +1,7 @@
 package utillity.csvTools;
 
 
+import configuration.Configuration;
 import packagingElements.packages.Package;
 
 import java.io.BufferedReader;
@@ -13,8 +14,7 @@ import java.util.stream.Collectors;
 public class CSVReader implements ICSVReader {
     @Override
     public List<String[]> readLKW() {
-        List<String[]> content = readCSV("base_lkw.csv");
-        return content;
+        return readCSV("base_lkw.csv");
     }
 
     @Override
@@ -23,7 +23,7 @@ public class CSVReader implements ICSVReader {
 
         return fileContent.stream().map(line -> {
             String id = line[0];
-            String contentStr = line[1];
+            String[][] content = parsePackageContent(line[1]);
             int zipCode = Integer.parseInt(line[2]);
 
             Package.PackageTypeE packageTypeE = switch (line[3]) {
@@ -35,7 +35,7 @@ public class CSVReader implements ICSVReader {
 
             double weigth = Double.parseDouble(line[4]);
 
-            return new Package(id, new String[2][3], zipCode, packageTypeE, weigth);
+            return new Package(id, content, zipCode, packageTypeE, weigth);
         }).collect(Collectors.toList());
     }
 
@@ -51,5 +51,19 @@ public class CSVReader implements ICSVReader {
             e.printStackTrace();
         }
         return fileContent;
+    }
+
+    private String[][] parsePackageContent(String raw) {
+        String[][] content = new String[Configuration.instance.packageHeight][Configuration.instance.packageWidth];
+        for (int i = 0; i < Configuration.instance.packageHeight; i++) {
+            // remove '['
+            raw = raw.substring(1);
+            for (int j = 0; j < Configuration.instance.packageWidth; j++) {
+                content[i][j] = raw.substring(0, Configuration.instance.packageLength);
+                // remove content and '|' or ']'
+                raw = raw.substring(Configuration.instance.packageLength + 1);
+            }
+        }
+        return content;
     }
 }

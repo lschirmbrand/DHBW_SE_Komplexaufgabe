@@ -15,7 +15,7 @@ public class Application {
         //csvReader.readLKW();
 
 
-        csvReader.readPackages();
+        var packages = csvReader.readPackages();
 
         int i = 0;
     }

@@ -45,7 +45,6 @@ public class CSVWriter implements ICSVWriter {
             sb.append(s.getPackageType().toString());
             sb.append(",");
             sb.append(s.getWeight());
-            sb.append(";");
             sb.append('\n');
         }
 

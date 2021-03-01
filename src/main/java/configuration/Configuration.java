@@ -7,6 +7,10 @@ public enum Configuration {
     public int numberOfPallets = 50;
     public int numberOfLKWS = 5;
 
+    public int packageHeight = 10;
+    public int packageWidth = 10;
+    public int packageLength = 25;
+
     public int numberOfPackagesInBox = 8;
     public int numberOfBoxLayers = 3;
 
