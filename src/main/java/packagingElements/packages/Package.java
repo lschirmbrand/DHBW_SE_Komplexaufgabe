@@ -1,77 +1,32 @@
 package packagingElements.packages;
 
 
-import utillity.idGenerator.IDGenerator;
-
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Package {
 
-    private final int contHeight = 10;
-    private final int contWidth = 10;
-    private final int contLength = 25;
-    private final IDGenerator idGenerator = new IDGenerator();
-    private String id;
-    private String[][] content;
-    private int zipCode;
-    private PackageTypeE packageType;
-    private double weight;
+    private final String id;
+    private final String[][] content;
+    private final int zipCode;
+    private final PackageTypeE packageType;
+    private final double weight;
 
-    public Package() {
-        generateID();
-        generateContent();
-        generateZipCode();
-        generateSendingType();
-        generateWeight();
-    }
 
-    private void generateID() {
-        final int numberOfDigits = 6;
-        this.id = idGenerator.generateID(numberOfDigits);
-    }
-
-    private void generateContent() {
-        List<Character> pool = IntStream.range(97, 123).mapToObj(value -> (char) value).collect(Collectors.toList());
-        pool.addAll(List.of('.', ':', '-', '!'));
-
-        content = new String[contHeight][contWidth];
-        for (int h = 0; h < contHeight; h++) {
-            for (int w = 0; w < contWidth; w++) {
-                content[h][w] = "";
-                for (int l = 0; l < contLength; l++) {
-                    content[h][w] += pool.get(ThreadLocalRandom.current().nextInt(0, pool.size()));
-                }
-            }
-        }
-    }
-
-    private void generateZipCode() {
-        this.zipCode = ThreadLocalRandom.current().nextInt(1067, 99998 + 1);
-    }
-
-    private void generateSendingType() {
-        double rand = ThreadLocalRandom.current().nextDouble();
-        if (rand < 0.8) {
-            this.packageType = PackageTypeE.NORMAL;
-        } else if (rand >= 0.8 && rand < 0.95) {
-            this.packageType = PackageTypeE.EXPRESS;
-        } else {
-            this.packageType = PackageTypeE.VALUE;
-        }
-    }
-
-    private void generateWeight() {
-        float temp = ThreadLocalRandom.current().nextInt(100, 500 + 1);
-        this.weight = temp / 100;
+    public Package(String id, String[][] content, int zipCode, PackageTypeE packageType, double weight) {
+        this.id = id;
+        this.content = content;
+        this.zipCode = zipCode;
+        this.packageType = packageType;
+        this.weight = weight;
     }
 
     public void addExplosive() {
         String exp = "exp|os!ve";
+        int contHeight = 10;
         int h = ThreadLocalRandom.current().nextInt(contHeight);
+        int contWidth = 10;
         int w = ThreadLocalRandom.current().nextInt(contWidth);
+        int contLength = 25;
         int l = ThreadLocalRandom.current().nextInt(contLength - exp.length() + 1);
 
         String line = content[h][w];
@@ -89,11 +44,11 @@ public class Package {
 
     public String getContentToString() {
         StringBuilder sb = new StringBuilder();
-        for (int h = 0; h < contHeight; h++) {
+        for (int h = 0; h < content.length; h++) {
             sb.append("[");
-            for (int w = 0; w < contWidth; w++) {
+            for (int w = 0; w < content[h].length; w++) {
                 sb.append(this.content[h][w]);
-                if (w != contWidth - 1) {
+                if (w != content[h].length - 1) {
                     sb.append("|");
                 }
             }

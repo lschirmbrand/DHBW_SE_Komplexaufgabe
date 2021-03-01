@@ -1,6 +1,7 @@
 import configuration.Configuration;
 import packagingElements.boxes.Box;
 import packagingElements.packages.Package;
+import packagingElements.packages.PackageFactory;
 import packagingElements.pallets.Pallet;
 import utillity.csvTools.CSVWriter;
 import vehicle.lkw.LKW;
@@ -16,7 +17,7 @@ public class CSVBuilder {
         // create packages
         ArrayList<Package> packages = new ArrayList<>();
         for (int i = 0; i < Configuration.instance.numberOfPackages; i++) {
-            packages.add(new Package());
+            packages.add(PackageFactory.buildPackage());
         }
 
         // Add exp|os!ve to 4 random packages

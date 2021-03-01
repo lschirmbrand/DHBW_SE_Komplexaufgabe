@@ -1,19 +1,22 @@
 package control;
 
+import com.google.common.eventbus.EventBus;
 import packageSortingCenter.PackageSortingCenter;
 import packageSortingCenter.commands.*;
 
 
 public class ControlUnit implements IControlUnit {
 
-    PackageSortingCenter packageSortingCenter;
-    ChangeAlgorithmCommand changeAlgorithmCommand;
-    InitCommand initCommand;
-    LockCommand lockCommand;
-    UnlockCommand unlockCommand;
-    NextCommand nextCommand;
-    ShowStatisticsCommand showStatisticsCommand;
-    ShutdownCommand shutdownCommand;
+    private final EventBus eventBus;
+
+    private final PackageSortingCenter packageSortingCenter;
+    private final ChangeAlgorithmCommand changeAlgorithmCommand;
+    private final InitCommand initCommand;
+    private final LockCommand lockCommand;
+    private final UnlockCommand unlockCommand;
+    private final NextCommand nextCommand;
+    private final ShowStatisticsCommand showStatisticsCommand;
+    private final ShutdownCommand shutdownCommand;
 
     public ControlUnit(PackageSortingCenter packageSortingCenter) {
         this.packageSortingCenter = packageSortingCenter;
@@ -24,6 +27,8 @@ public class ControlUnit implements IControlUnit {
         nextCommand = new NextCommand(packageSortingCenter);
         showStatisticsCommand = new ShowStatisticsCommand(packageSortingCenter);
         shutdownCommand = new ShutdownCommand(packageSortingCenter);
+
+        eventBus = new EventBus("SortingCenter");
     }
 
     @Override
