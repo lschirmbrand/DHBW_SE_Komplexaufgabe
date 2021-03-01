@@ -1,11 +1,10 @@
 package employee.idCard;
 
 import configuration.Configuration;
-import utillity.encryption.AES256;
+import utillity.encryption.*;
 import employee.idCard.magnetStripe.MagnetStripe;
 import employee.idCard.state.Active;
 import employee.idCard.state.IIDCardState;
-import utillity.encryption.DES256;
 
 import java.util.Objects;
 

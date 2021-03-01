@@ -53,13 +53,13 @@ public class PackageSortingCenter implements IPackageSortingCenter {
         for (int i = 0; i < lkwList.size(); i++) {
             waitingZone[i] = new WaitingZone(lkwList.get(i));
         }
-        int i = 0;
     }
 
     @Override
     public void next() {
         for(int i = 0; i< unloadingZone.length; i++){
-            unloadingZone[i] = new UnloadingZone();
+            unloadingZone[i] = new UnloadingZone(controlUnit);
+            unloadingZone[i].setID(i);
             if(!unloadingZone[i].hasLKW()){
                 unloadingZone[i].parkLKW(lkwList.get(i));
                 break;

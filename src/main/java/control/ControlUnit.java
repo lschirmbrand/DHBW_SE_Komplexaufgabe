@@ -65,4 +65,9 @@ public class ControlUnit implements IControlUnit {
     public void changeAlgorithm() {
         packageSortingCenter.changeAlgorithm();
     }
+
+    @Override
+    public void sensorTriggered() {
+
+    }
 }
