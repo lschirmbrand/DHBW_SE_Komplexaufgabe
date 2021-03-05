@@ -1,12 +1,12 @@
 package packageSortingCenter.sortingSystem;
 
-import packageSortingCenter.sortingSystem.roboter.Roboter;
+import packageSortingCenter.sortingSystem.roboter.Robot;
 import packageSortingCenter.sortingSystem.sortingTracks.*;
 import packageSortingCenter.sortingSystem.storage.*;
 
 
 public class SortingSystem implements ISortingSystem {
-    Roboter roboter;
+    Robot robot;
     StorageEmptyBox storageEmptyBox;
     StorageEmptyPallet storageEmptyPallet;
     WarehouseTrack[] warehouseTrack;
@@ -15,7 +15,7 @@ public class SortingSystem implements ISortingSystem {
     SortingTrackValue sortingTrackValue;
 
     public SortingSystem(){
-        roboter = new Roboter();
+        robot = new Robot();
         storageEmptyBox = new StorageEmptyBox();
         storageEmptyPallet = new StorageEmptyPallet();
         warehouseTrack = new WarehouseTrack[8];

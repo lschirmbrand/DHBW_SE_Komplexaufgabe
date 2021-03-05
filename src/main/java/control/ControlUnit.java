@@ -1,6 +1,7 @@
 package control;
 
 import com.google.common.eventbus.EventBus;
+import events.Subscriber;
 import packageSortingCenter.PackageSortingCenter;
 import packageSortingCenter.commands.*;
 
@@ -29,6 +30,10 @@ public class ControlUnit implements IControlUnit {
         shutdownCommand = new ShutdownCommand(packageSortingCenter);
 
         eventBus = new EventBus("SortingCenter");
+    }
+
+    public void addSubscriber(Subscriber subscriber){
+        eventBus.register(subscriber);
     }
 
     @Override

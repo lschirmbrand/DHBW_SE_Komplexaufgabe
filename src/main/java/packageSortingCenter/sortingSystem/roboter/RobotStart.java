@@ -1,4 +1,4 @@
 package packageSortingCenter.sortingSystem.roboter;
 
-public interface IRoboter {
+public class RobotStart {
 }

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
+@SuppressWarnings("ALL")
 public class PackageSortingCenter implements IPackageSortingCenter {
     private final ControlUnit controlUnit;
     private final SortingSystem sortingSystem;
