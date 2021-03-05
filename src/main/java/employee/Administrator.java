@@ -4,28 +4,14 @@ import configuration.Configuration;
 import employee.idCard.IDCard;
 
 public class Administrator extends Employee {
+    private final Profile Profile;
 
-    private final int id;
-    private final String name;
-    private final String pin;
-    private final EmployeeRoles role = EmployeeRoles.ADMINISTRATOR;
-    private final ProfileTypeE profileType;
-    private final IDCard idCard;
-
-    public Administrator() {
-        this.id = 1337;
-        this.name = Configuration.instance.nameOfAdministrator;
-        this.profileType = ProfileTypeE.A;
-        this.pin = "pincode";
-        this.idCard = new IDCard();
-        this.idCard.encryptMagnetStripe(id, name, role.toString(), this.pin);
+    public Administrator(int id, String name, IDCard idCard, String pin, Administrator.Profile profile) {
+        super(id, name, idCard, pin, EmployeeRole.ADMINISTRATOR);
+        Profile = profile;
     }
 
-    public EmployeeRoles getRole() {
-        return role;
-    }
-
-    public enum ProfileTypeE {
+    public enum Profile {
         A, B, C
     }
 

@@ -3,8 +3,7 @@ package employee;
 import employee.idCard.IDCard;
 
 public class Operator extends Employee {
-    private int id;
-    private String name;
-
-    private IDCard idcard;
+    public Operator(int id, String name, IDCard idCard, String pin) {
+        super(id, name, idCard, pin, EmployeeRole.OPERATOR);
+    }
 }

@@ -1,5 +1,7 @@
 package configuration;
 
+import utillity.encryption.EncryptionStrategy;
+
 public enum Configuration {
     instance;
     public int numberOfPackages = 24000;
@@ -23,8 +25,7 @@ public enum Configuration {
 
     public String superPin = "superPinKlasse";
 
-    public String aesAlgorithm = "AES";
-    public String desAlgorithm = "DES";
+    public EncryptionStrategy encryptionStrategy = EncryptionStrategy.AES;
 
     public String secretKey = "dhbw";
 

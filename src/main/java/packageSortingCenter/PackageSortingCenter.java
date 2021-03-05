@@ -37,6 +37,10 @@ public class PackageSortingCenter implements IPackageSortingCenter {
         sortingSystem = new SortingSystem();
     }
 
+    public ControlUnit getControlUnit() {
+        return controlUnit;
+    }
+
     @Override
     public void init() {
         for (int i = 0; i < Configuration.instance.numberOfLKWS; i++) {
