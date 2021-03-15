@@ -20,7 +20,6 @@ public class BoxFactory {
             int pack = i % 4;
 
             layers[layer][side][pack] = packages.get(i);
-            System.out.println(layer + " " + side + " " + pack);
         }
         return new Box(id, layers);
     }

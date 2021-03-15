@@ -1,13 +1,22 @@
 package control;
 
 import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+import configuration.Configuration;
 import configuration.SearchAlgorithm;
+import events.Subscriber;
+import events.UnloadingFinishedEvent;
+import events.robot.StartEmptyingEvent;
 import packageSortingCenter.PackageSortingCenter;
-import packageSortingCenter.commands.*;
+import packageSortingCenter.commands.ICommand;
+import packageSortingCenter.sortingSystem.storage.sensor.ITrackLevelListener;
 import packageSortingCenter.unloadingZone.sensor.IUnloadingListener;
+import events.autonomous_vehicle.UnloadEvent;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 
-public class ControlUnit implements IControlUnit, IUnloadingListener {
+public class ControlUnit extends Subscriber implements IControlUnit, IUnloadingListener, ITrackLevelListener {
 
     private final EventBus eventBus;
 
@@ -17,6 +26,11 @@ public class ControlUnit implements IControlUnit, IUnloadingListener {
         this.packageSortingCenter = packageSortingCenter;
 
         eventBus = new EventBus("SortingCenter");
+        addEventSubscriber(this);
+    }
+
+    public void addEventSubscriber(Subscriber subscriber) {
+        eventBus.register(subscriber);
     }
 
     public void executeCommand(ICommand command) {
@@ -24,10 +38,11 @@ public class ControlUnit implements IControlUnit, IUnloadingListener {
     }
 
     public void init() {
+        packageSortingCenter.init();
     }
 
     public void next() {
-
+        packageSortingCenter.next();
     }
 
     public void shutdown() {
@@ -47,10 +62,25 @@ public class ControlUnit implements IControlUnit, IUnloadingListener {
     }
 
     public void changeAlgorithm(SearchAlgorithm searchAlgorithm) {
-        packageSortingCenter.changeAlgorithm();
+        packageSortingCenter.changeAlgorithm(searchAlgorithm);
     }
 
-    public void sensorTriggered() {
+    public void sensorTriggered(int zoneID) {
+        int vehicleID = ThreadLocalRandom.current().nextInt(Configuration.instance.numberOfAutonomousVehicles);
+        eventBus.post(new UnloadEvent(vehicleID, zoneID));
+    }
 
+    public EventBus getEventBus() {
+        return eventBus;
+    }
+
+    @Subscribe
+    public void receive(UnloadingFinishedEvent event) {
+        eventBus.post(new StartEmptyingEvent());
+    }
+
+    @Override
+    public void trackFull() {
+        System.out.println("full");
     }
 }

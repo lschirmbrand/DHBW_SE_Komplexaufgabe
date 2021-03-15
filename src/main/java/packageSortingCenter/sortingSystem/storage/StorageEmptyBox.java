@@ -3,15 +3,17 @@ package packageSortingCenter.sortingSystem.storage;
 import packagingElements.boxes.Box;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 public class StorageEmptyBox {
-    ArrayList<Box> emptyBoxes;
+    Stack<Box> emptyBoxes;
 
     public StorageEmptyBox(){
-        emptyBoxes = new ArrayList<>();
+        emptyBoxes = new Stack<>();
     }
 
-    public void putBoxOn(Box box){
-        emptyBoxes.add(box);
+    public void store(Box box){
+        emptyBoxes.push(box);
     }
 }

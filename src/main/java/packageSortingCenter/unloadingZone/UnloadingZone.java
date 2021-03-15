@@ -4,31 +4,36 @@ import control.ControlUnit;
 import packageSortingCenter.unloadingZone.sensor.UnloadingDetector;
 import vehicle.lkw.LKW;
 
-public class UnloadingZone implements IUnloadingZone {
+public class UnloadingZone {
 
-    private int id;
+    private final int id;
     private LKW parkedLKW;
-    UnloadingDetector unloadingDetector = new UnloadingDetector();
+    UnloadingDetector unloadingDetector;
     ControlUnit controlUnit;
 
-    public UnloadingZone(ControlUnit controlUnit){
+    public UnloadingZone(ControlUnit controlUnit, int id){
         this.controlUnit = controlUnit;
+        this.id = id;
+        unloadingDetector = new UnloadingDetector(id);
         unloadingDetector.addListener(controlUnit);
     }
 
-    @Override
-    public void setID(int id) {
-        this.id = id;
-    }
+    public int getId;
 
-    @Override
     public void parkLKW(LKW lkw) {
         this.parkedLKW = lkw;
         unloadingDetector.triggerSensor();
     }
 
-    @Override
     public boolean hasLKW() {
         return this.parkedLKW != null;
+    }
+
+    public LKW getParkedLKW() {
+        return parkedLKW;
+    }
+
+    public void deactivateSensor() {
+        this.unloadingDetector.setActivated(false);
     }
 }

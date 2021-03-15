@@ -18,7 +18,7 @@ public enum Configuration {
 
 
     public int numberOfUnloadingZones = 7;
-    public int numberOfParkingZoneAutonom = 5;
+    public int numberOfAutonomousVehicles = 5;
 
     public String nameOfAdministrator = "Gustav Admin";
 

@@ -2,14 +2,17 @@ package packageSortingCenter.waitingZone;
 
 import vehicle.lkw.LKW;
 
-public class WaitingZone {
-    private LKW lkwWaitingSpace;
+import java.util.ArrayDeque;
+import java.util.Queue;
 
-    public WaitingZone(LKW lkw) {
-        this.lkwWaitingSpace = lkw;
+public class WaitingZone {
+    private final Queue<LKW> lkwQueue = new ArrayDeque<>(5);
+
+    public void add(LKW lkw) {
+        lkwQueue.add(lkw);
     }
 
-    private void setLKW(LKW lkw) {
-        this.lkwWaitingSpace = lkw;
+    public LKW getNext() {
+        return lkwQueue.poll();
     }
 }

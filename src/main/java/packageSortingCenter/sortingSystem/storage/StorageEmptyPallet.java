@@ -3,15 +3,16 @@ package packageSortingCenter.sortingSystem.storage;
 import packagingElements.pallets.Pallet;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class StorageEmptyPallet {
-    ArrayList<Pallet> emptyPallets;
+    Stack<Pallet> emptyPallets;
 
     public StorageEmptyPallet(){
-        emptyPallets = new ArrayList<>();
+        emptyPallets = new Stack<>();
     }
 
-    public void putPalletOn(Pallet pallet){
-        this.emptyPallets.add(pallet);
+    public void store(Pallet pallet){
+        this.emptyPallets.push(pallet);
     }
 }

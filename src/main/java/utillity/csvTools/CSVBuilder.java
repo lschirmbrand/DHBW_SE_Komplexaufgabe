@@ -6,7 +6,9 @@ import packagingElements.boxes.BoxFactory;
 import packagingElements.packages.Package;
 import packagingElements.packages.PackageFactory;
 import packagingElements.pallets.Pallet;
+import packagingElements.pallets.PalletFactory;
 import vehicle.lkw.LKW;
+import vehicle.lkw.LKWFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ public class CSVBuilder {
         CSVWriter csvWriter = new CSVWriter();
 
         // create packages
-        ArrayList<Package> packages = new ArrayList<>();
+        List<Package> packages = new ArrayList<>();
         for (int i = 0; i < Configuration.instance.numberOfPackages; i++) {
             packages.add(PackageFactory.build());
         }
@@ -34,34 +36,33 @@ public class CSVBuilder {
         explosiveIndexes.stream().map(packages::get).forEach(Package::addExplosive);
 
         // write packages to csv
-        csvWriter.setPackageList(packages);
-        csvWriter.writePackage();
+        csvWriter.writePackage(packages);
 
-        ArrayList<Box> boxes = new ArrayList<>();
+        // boxes
+        List<Box> boxes = new ArrayList<>();
         for (int i = 0; i < Configuration.instance.numberOfBoxes; i++) {
-            BoxFactory.build(packages.subList(i * 40, (i + 1) * 40));
+            boxes.add(BoxFactory.build(packages.subList(i * 40, (i + 1) * 40)));
         }
 
-        csvWriter.setBoxList(boxes);
-        csvWriter.writeBox();
+        csvWriter.writeBox(boxes);
 
-        ArrayList<Pallet> pallets = new ArrayList<>();
+        // pallets
+        List<Pallet> pallets = new ArrayList<>();
         for (int i = 0; i < Configuration.instance.numberOfPallets; i++) {
-            pallets.add(new Pallet(i));
-            pallets.get(i).fillPallet(boxes);
+            pallets.add(PalletFactory.build(boxes.subList(i * 12, (i + 1) * 12)));
         }
 
-        csvWriter.setPalletList(pallets);
-        csvWriter.writePallet();
+        csvWriter.writePallet(pallets);
 
+        // lkw
         ArrayList<LKW> lkws = new ArrayList<>();
         for (int i = 0; i < Configuration.instance.numberOfLKWS; i++) {
-            lkws.add(new LKW());
-            lkws.get(i).fillTrailer(pallets);
+            LKW lkw = LKWFactory.build();
+            lkws.add(lkw);
+            lkw.loadTrailer(pallets.subList(i * 10, (i + 1) * 10));
         }
 
-        csvWriter.setLKWList(lkws);
-        csvWriter.writeLKW();
+        csvWriter.writeLKW(lkws);
 
     }
 }

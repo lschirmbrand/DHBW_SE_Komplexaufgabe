@@ -1,43 +1,23 @@
 package utillity.csvTools;
 
 import packagingElements.boxes.Box;
-import vehicle.lkw.LKW;
 import packagingElements.packages.Package;
 import packagingElements.pallets.Pallet;
+import vehicle.lkw.LKW;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class CSVWriter implements ICSVWriter {
 
-    private ArrayList<Package> packageList;
-    private ArrayList<Box> boxList;
-    private ArrayList<Pallet> palletList;
-    private ArrayList<LKW> lkwList;
-
-    public void setPackageList(ArrayList<Package> packageList) {
-        this.packageList = packageList;
-    }
-
-    public void setBoxList(ArrayList<Box> boxList) {
-        this.boxList = boxList;
-    }
-
-    public void setPalletList(ArrayList<Pallet> palletList) {
-        this.palletList = palletList;
-    }
-
-    public void setLKWList(ArrayList<LKW> lkwList) {
-        this.lkwList = lkwList;
-    }
-
     @Override
-    public void writePackage() {
+    public void writePackage(List<Package> packages) {
         StringBuilder sb = new StringBuilder();
-        for (Package pack : packageList) {
+        for (Package pack : packages) {
             sb.append(pack.getId());
             sb.append(",");
             sb.append(pack.getContentToString());
@@ -59,17 +39,51 @@ public class CSVWriter implements ICSVWriter {
     }
 
     @Override
-    public void writeBox() {
+    public void writeBox(List<Box> boxes) {
         StringBuilder sb = new StringBuilder();
-        for (Box box : boxList) {
+        for (Box box : boxes) {
             sb.append(box.getId());
             sb.append(",");
             sb.append(getPackageIDs(box.getPackages()));
-            sb.append(";");
             sb.append('\n');
         }
 
         try (PrintWriter writer = new PrintWriter("base_box.csv")) {
+            writer.write(sb.toString());
+
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void writePallet(List<Pallet> pallets) {
+        String str = String.join("\n", getPalletStrings(pallets));
+
+        try (PrintWriter writer = new PrintWriter("base_pallet.csv")) {
+            writer.write(str);
+
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void writeLKW(List<LKW> lkwList) {
+        StringBuilder sb = new StringBuilder();
+
+        for (LKW lkw : lkwList) {
+            List<String> lines = lkwCargoToString(lkw.getTrailer().getCargo());
+
+            for (String line : lines) {
+                sb.append(lkw.getId());
+                sb.append(",");
+                sb.append(line);
+                sb.append('\n');
+            }
+        }
+
+        try (PrintWriter writer = new PrintWriter("base_lkw.csv")) {
             writer.write(sb.toString());
 
         } catch (FileNotFoundException e) {
@@ -96,51 +110,42 @@ public class CSVWriter implements ICSVWriter {
         return str.toString();
     }
 
-    @Override
-    public void writePallet() {
-        StringBuilder sb = new StringBuilder();
-
-        for (Pallet s : palletList) {
-            String[] lines = s.palletBoxesToString();
-            for (String line : lines) {
-                sb.append(s.getId());
-                sb.append(",");
-                sb.append(line);
-                sb.append(";");
-                sb.append('\n');
+    private List<String> getPalletStrings(List<Pallet> pallets) {
+        List<String> lines = new ArrayList<>();
+        for (Pallet pallet : pallets) {
+            Box[][][] boxes = pallet.getBoxes();
+            for (int i = 0; i < boxes.length; i++) {
+                for (int j = 0; j < boxes[i].length; j++) {
+                    String pos = "(" + i + "/" + j + ")";
+                    for (int k = 0; k < boxes[i][j].length; k++) {
+                        lines.add(pallet.getId() + "," + pos + "," + k + "," + boxes[i][j][k].getId());
+                    }
+                }
             }
         }
-
-        try (PrintWriter writer = new PrintWriter("base_pallet.csv")) {
-            writer.write(sb.toString());
-
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
+        return lines;
     }
 
-    @Override
-    public void writeLKW() {
+    public List<String> lkwCargoToString(Pallet[][] cargo) {
+        List<String> palletStrings = new ArrayList<>();
+        for (int i = 0; i < cargo.length; i++) {
+            for (int h = 0; h < cargo[i].length; h++) {
+                StringBuilder sb = new StringBuilder();
+                //Append Position
+                if (i == 0) {
+                    sb.append("left");
+                } else {
+                    sb.append("right");
+                }
 
-        StringBuilder sb = new StringBuilder();
-
-        for (LKW s : lkwList) {
-            String[] lines = s.getTrailer().lkwPalletsToString();
-
-            for (String line : lines) {
-                sb.append(s.getId());
+                //Append Level
                 sb.append(",");
-                sb.append(line);
-                sb.append('\n');
+                sb.append(h);
+                sb.append(",");
+                sb.append(cargo[i][h].getId());
+                palletStrings.add(sb.toString());
             }
         }
-
-        try (PrintWriter writer = new PrintWriter("base_lkw.csv")) {
-            writer.write(sb.toString());
-
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
-
+        return palletStrings;
     }
 }
