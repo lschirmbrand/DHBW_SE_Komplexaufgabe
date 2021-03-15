@@ -3,6 +3,9 @@ package utillity.csvTools;
 
 import configuration.Configuration;
 import packagingElements.packages.Package;
+import packagingElements.packages.PackageType;
+import packagingElements.pallets.Pallet;
+import vehicle.lkw.LKW;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,10 +15,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CSVReader implements ICSVReader {
-    @Override
-    public List<String[]> readLKW() {
-        return readCSV("base_lkw.csv");
-    }
 
     @Override
     public List<Package> readPackages() {
@@ -26,17 +25,27 @@ public class CSVReader implements ICSVReader {
             String[][] content = parsePackageContent(line[1]);
             int zipCode = Integer.parseInt(line[2]);
 
-            Package.PackageTypeE packageTypeE = switch (line[3]) {
-                case "NORMAL" -> Package.PackageTypeE.NORMAL;
-                case "EXPRESS" -> Package.PackageTypeE.EXPRESS;
-                case "VALUE" -> Package.PackageTypeE.VALUE;
+            PackageType packageType = switch (line[3]) {
+                case "NORMAL" -> PackageType.NORMAL;
+                case "EXPRESS" -> PackageType.EXPRESS;
+                case "VALUE" -> PackageType.VALUE;
                 default -> throw new IllegalStateException("Unexpected value: " + line[3]);
             };
 
             double weigth = Double.parseDouble(line[4]);
 
-            return new Package(id, content, zipCode, packageTypeE, weigth);
+            return new Package(id, content, zipCode, packageType, weigth);
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Pallet> readPallets() {
+        return null;
+    }
+
+    @Override
+    public List<LKW> readLKW() {
+        return null;
     }
 
     private List<String[]> readCSV(String filename) {

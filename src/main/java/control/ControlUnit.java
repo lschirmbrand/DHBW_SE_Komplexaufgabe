@@ -1,11 +1,13 @@
 package control;
 
 import com.google.common.eventbus.EventBus;
+import configuration.SearchAlgorithm;
 import packageSortingCenter.PackageSortingCenter;
 import packageSortingCenter.commands.*;
+import packageSortingCenter.unloadingZone.sensor.IUnloadingListener;
 
 
-public class ControlUnit implements IControlUnit {
+public class ControlUnit implements IControlUnit, IUnloadingListener {
 
     private final EventBus eventBus;
 
@@ -18,7 +20,14 @@ public class ControlUnit implements IControlUnit {
     }
 
     public void executeCommand(ICommand command) {
-        command.execute();
+        command.execute(this);
+    }
+
+    public void init() {
+    }
+
+    public void next() {
+
     }
 
     public void shutdown() {
@@ -37,7 +46,7 @@ public class ControlUnit implements IControlUnit {
         packageSortingCenter.showStatistics();
     }
 
-    public void changeAlgorithm() {
+    public void changeAlgorithm(SearchAlgorithm searchAlgorithm) {
         packageSortingCenter.changeAlgorithm();
     }
 

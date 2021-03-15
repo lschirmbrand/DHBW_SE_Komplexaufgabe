@@ -2,6 +2,7 @@ package packageSortingCenter;
 
 import configuration.Configuration;
 import control.ControlUnit;
+import packagingElements.packages.PackageType;
 import utillity.csvTools.CSVReader;
 import vehicle.lkw.LKW;
 import packageSortingCenter.parkingZoneAutonom.ParkingZoneAutonom;
@@ -9,7 +10,6 @@ import packageSortingCenter.report.Report;
 import packageSortingCenter.sortingSystem.SortingSystem;
 import packageSortingCenter.unloadingZone.UnloadingZone;
 import packageSortingCenter.waitingZone.WaitingZone;
-import packagingElements.packages.Package;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ public class PackageSortingCenter implements IPackageSortingCenter {
 
     private final ArrayList<LKW> lkwList = new ArrayList<>();
     private ArrayList<LKW> dispatchedLKW = new ArrayList<>();
-    private EnumMap<Package.PackageTypeE, Integer> packageTypeCount = new EnumMap<>(Package.PackageTypeE.class);
+    private EnumMap<PackageType, Integer> packageTypeCount = new EnumMap<>(PackageType.class);
     private int numberDangerousPackages = 0;
 
     private String usedAlgorithm = Configuration.instance.algorithmBM;
@@ -43,20 +43,20 @@ public class PackageSortingCenter implements IPackageSortingCenter {
 
     @Override
     public void init() {
-        for (int i = 0; i < Configuration.instance.numberOfLKWS; i++) {
-            lkwList.add(new LKW());
-        }
-
-        CSVReader csvReader = new CSVReader();
-        List<String[]> lkwContent = csvReader.readLKW();
-
-        for (LKW s : lkwList) {
-            s.fillTrailerFromList(lkwContent);
-        }
-
-        for (int i = 0; i < lkwList.size(); i++) {
-            waitingZone[i] = new WaitingZone(lkwList.get(i));
-        }
+//        for (int i = 0; i < Configuration.instance.numberOfLKWS; i++) {
+//            lkwList.add(new LKW());
+//        }
+//
+//        CSVReader csvReader = new CSVReader();
+////        List<String[]> lkwContent = csvReader.readLKW();
+//
+//        for (LKW s : lkwList) {
+//            s.fillTrailerFromList(lkwContent);
+//        }
+//
+//        for (int i = 0; i < lkwList.size(); i++) {
+//            waitingZone[i] = new WaitingZone(lkwList.get(i));
+//        }
     }
 
     @Override

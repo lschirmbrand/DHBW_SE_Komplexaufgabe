@@ -8,11 +8,11 @@ public class Package {
     private final String id;
     private final String[][] content;
     private final int zipCode;
-    private final PackageTypeE packageType;
+    private final PackageType packageType;
     private final double weight;
 
 
-    public Package(String id, String[][] content, int zipCode, PackageTypeE packageType, double weight) {
+    public Package(String id, String[][] content, int zipCode, PackageType packageType, double weight) {
         this.id = id;
         this.content = content;
         this.zipCode = zipCode;
@@ -61,7 +61,7 @@ public class Package {
         return zipCode;
     }
 
-    public PackageTypeE getPackageType() {
+    public PackageType getPackageType() {
         return packageType;
     }
 
@@ -69,7 +69,4 @@ public class Package {
         return weight;
     }
 
-    public enum PackageTypeE {
-        NORMAL, EXPRESS, VALUE
-    }
 }

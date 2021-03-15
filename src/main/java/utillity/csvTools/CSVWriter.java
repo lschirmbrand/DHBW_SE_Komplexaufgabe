@@ -8,6 +8,8 @@ import packagingElements.pallets.Pallet;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class CSVWriter implements ICSVWriter {
 
@@ -35,16 +37,16 @@ public class CSVWriter implements ICSVWriter {
     @Override
     public void writePackage() {
         StringBuilder sb = new StringBuilder();
-        for (Package s : packageList) {
-            sb.append(s.getId());
+        for (Package pack : packageList) {
+            sb.append(pack.getId());
             sb.append(",");
-            sb.append(s.getContentToString());
+            sb.append(pack.getContentToString());
             sb.append(",");
-            sb.append(s.getZipCode());
+            sb.append(pack.getZipCode());
             sb.append(",");
-            sb.append(s.getPackageType().toString());
+            sb.append(pack.getPackageType().toString());
             sb.append(",");
-            sb.append(s.getWeight());
+            sb.append(pack.getWeight());
             sb.append('\n');
         }
 
@@ -59,10 +61,10 @@ public class CSVWriter implements ICSVWriter {
     @Override
     public void writeBox() {
         StringBuilder sb = new StringBuilder();
-        for (Box s : boxList) {
-            sb.append(s.getId());
+        for (Box box : boxList) {
+            sb.append(box.getId());
             sb.append(",");
-            sb.append(s.getPackageIDs());
+            sb.append(getPackageIDs(box.getPackages()));
             sb.append(";");
             sb.append('\n');
         }
@@ -73,6 +75,25 @@ public class CSVWriter implements ICSVWriter {
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private String getPackageIDs(Package[][][] packages) {
+        StringBuilder str = new StringBuilder();
+        for (Package[][] aPackage : packages) {
+            str.append("[");
+            for (int j = 0; j < aPackage.length; j++) {
+                str.append(Arrays.stream(aPackage[j])
+                        .map(Package::getId)
+                        .collect(Collectors.joining("|"))
+                );
+
+                if (j != aPackage.length - 1) {
+                    str.append("||");
+                }
+            }
+            str.append("]");
+        }
+        return str.toString();
     }
 
     @Override

@@ -1,16 +1,11 @@
 package packageSortingCenter.commands;
 
+import control.ControlUnit;
 import packageSortingCenter.PackageSortingCenter;
 
 public class LockCommand implements ICommand {
-    private final PackageSortingCenter packageSortingCenter;
-
-    public LockCommand(PackageSortingCenter packageSortingCenter) {
-        this.packageSortingCenter = packageSortingCenter;
-    }
-
     @Override
-    public void execute() {
-        packageSortingCenter.lock();
+    public void execute(ControlUnit controlUnit) {
+        controlUnit.lock();
     }
 }

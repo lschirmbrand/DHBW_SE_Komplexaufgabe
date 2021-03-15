@@ -1,6 +1,6 @@
 package packageSortingCenter.report;
 
-import packagingElements.packages.Package;
+import packagingElements.packages.PackageType;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -58,30 +58,30 @@ public class Report {
             return this;
         }
 
-        public Builder setNumberPackagesGrouped(EnumMap<Package.PackageTypeE, Integer> packageType){
+        public Builder setNumberPackagesGrouped(EnumMap<PackageType, Integer> packageType){
             String[] numberPackagesGrouped = new String[3];
             StringBuilder sb = new StringBuilder();
-            sb.append(Package.PackageTypeE.NORMAL.toString());
+            sb.append(PackageType.NORMAL.toString());
             sb.append(": ");
-            sb.append(packageType.get(Package.PackageTypeE.NORMAL));
+            sb.append(packageType.get(PackageType.NORMAL));
             sb.append(";\n");
             numberPackagesGrouped[0] = sb.toString();
 
             //clear stringbuilder
             sb.setLength(0);
 
-            sb.append(Package.PackageTypeE.EXPRESS.toString());
+            sb.append(PackageType.EXPRESS.toString());
             sb.append(": ");
-            sb.append(packageType.get(Package.PackageTypeE.EXPRESS));
+            sb.append(packageType.get(PackageType.EXPRESS));
             sb.append(";\n");
             numberPackagesGrouped[1] = sb.toString();
 
             //clear stringbuilder
             sb.setLength(0);
 
-            sb.append(Package.PackageTypeE.VALUE.toString());
+            sb.append(PackageType.VALUE.toString());
             sb.append(": ");
-            sb.append(packageType.get(Package.PackageTypeE.VALUE));
+            sb.append(packageType.get(PackageType.VALUE));
             sb.append(";\n");
             numberPackagesGrouped[2] = sb.toString();
 

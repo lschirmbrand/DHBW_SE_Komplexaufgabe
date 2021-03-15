@@ -9,6 +9,8 @@ public class LKWTrailer implements ILKW {
 
     private final Pallet[][] trailerCargo = new Pallet[2][5];
 
+
+
     @Override
     public void loadTrailer(ArrayList<Pallet> pallets) {
         for (int i = 0; i < trailerCargo.length; i++) {

@@ -15,30 +15,30 @@ public class ControlUnitProxy implements IControlUnit {
         this.controlUnit = controlUnit;
     }
 
-    private List<EmployeeRole> allowedForInit = List.of(
+    private final List<EmployeeRole> allowedForInit = List.of(
             EmployeeRole.SUPERVISOR
     );
-    private List<EmployeeRole> allowedForNext = List.of(
+    private final List<EmployeeRole> allowedForNext = List.of(
             EmployeeRole.SUPERVISOR,
             EmployeeRole.OPERATOR
     );
-    private List<EmployeeRole> allowedForShutdown = List.of(
+    private final List<EmployeeRole> allowedForShutdown = List.of(
             EmployeeRole.SUPERVISOR,
             EmployeeRole.ADMINISTRATOR
     );
-    private List<EmployeeRole> allowedForLock = List.of(
+    private final List<EmployeeRole> allowedForLock = List.of(
             EmployeeRole.SUPERVISOR
     );
-    private List<EmployeeRole> allowedForUnlock = List.of(
+    private final List<EmployeeRole> allowedForUnlock = List.of(
             EmployeeRole.SUPERVISOR
     );
-    private List<EmployeeRole> allowedForShowStatistics = List.of(
+    private final List<EmployeeRole> allowedForShowStatistics = List.of(
             EmployeeRole.SUPERVISOR,
             EmployeeRole.ADMINISTRATOR,
             EmployeeRole.OPERATOR,
             EmployeeRole.DATA_ANALYST
     );
-    private List<EmployeeRole> allowedForChangeAlgorithm = List.of(
+    private final List<EmployeeRole> allowedForChangeAlgorithm = List.of(
             EmployeeRole.SUPERVISOR
     );
 

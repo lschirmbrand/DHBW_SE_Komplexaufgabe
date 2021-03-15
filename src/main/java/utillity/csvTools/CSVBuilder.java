@@ -2,10 +2,10 @@ package utillity.csvTools;
 
 import configuration.Configuration;
 import packagingElements.boxes.Box;
+import packagingElements.boxes.BoxFactory;
 import packagingElements.packages.Package;
 import packagingElements.packages.PackageFactory;
 import packagingElements.pallets.Pallet;
-import utillity.csvTools.CSVWriter;
 import vehicle.lkw.LKW;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class CSVBuilder {
         // create packages
         ArrayList<Package> packages = new ArrayList<>();
         for (int i = 0; i < Configuration.instance.numberOfPackages; i++) {
-            packages.add(PackageFactory.buildPackage());
+            packages.add(PackageFactory.build());
         }
 
         // Add exp|os!ve to 4 random packages
@@ -39,8 +39,7 @@ public class CSVBuilder {
 
         ArrayList<Box> boxes = new ArrayList<>();
         for (int i = 0; i < Configuration.instance.numberOfBoxes; i++) {
-            boxes.add(new Box());
-            boxes.get(i).fillBox(packages);
+            BoxFactory.build(packages.subList(i * 40, (i + 1) * 40));
         }
 
         csvWriter.setBoxList(boxes);

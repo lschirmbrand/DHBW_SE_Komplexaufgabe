@@ -11,8 +11,11 @@ public class Administrator extends Employee {
         Profile = profile;
     }
 
+    public Administrator.Profile getProfile() {
+        return Profile;
+    }
+
     public enum Profile {
         A, B, C
     }
-
 }

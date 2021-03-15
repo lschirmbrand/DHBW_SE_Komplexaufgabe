@@ -4,7 +4,7 @@ import packageSortingCenter.PackageSortingCenter;
 
 public class Application {
     public static void main(String[] args) {
-        Administrator administrator = new Administrator();
+//        Administrator administrator = new Administrator();
 
 
         CSVReader csvReader = new CSVReader();

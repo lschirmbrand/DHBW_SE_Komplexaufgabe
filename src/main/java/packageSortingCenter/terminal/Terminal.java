@@ -1,5 +1,7 @@
 package packageSortingCenter.terminal;
 
+import configuration.SearchAlgorithm;
+import control.IControlUnit;
 import employee.EmployeeRole;
 import packageSortingCenter.PackageSortingCenter;
 import packageSortingCenter.commands.*;
@@ -7,13 +9,13 @@ import control.ControlUnitProxy;
 
 public class Terminal {
 
-    private PackageSortingCenter packageSortingCenter;
-    private IDCardReader cardReader;
-
+    private final PackageSortingCenter packageSortingCenter;
+    private final IDCardReader cardReader;
 
     private EmployeeRole authenticatedRole;
 
-    public Terminal() {
+    public Terminal(PackageSortingCenter packageSortingCenter) {
+        this.packageSortingCenter = packageSortingCenter;
         this.cardReader = new IDCardReader(this);
         this.authenticatedRole = null;
     }
@@ -22,39 +24,43 @@ public class Terminal {
         this.authenticatedRole = role;
     }
 
+    public IDCardReader getCardReader() {
+        return cardReader;
+    }
+
     public void init() {
         new ControlUnitProxy(authenticatedRole, packageSortingCenter.getControlUnit())
-                .executeCommand(new InitCommand(packageSortingCenter));
+                .executeCommand(new InitCommand());
     }
 
     public void next() {
         new ControlUnitProxy(authenticatedRole, packageSortingCenter.getControlUnit())
-                .executeCommand(new NextCommand(packageSortingCenter));
+                .executeCommand(new NextCommand());
     }
 
     public void shutdown() {
         new ControlUnitProxy(authenticatedRole, packageSortingCenter.getControlUnit())
-                .executeCommand(new ShutdownCommand(packageSortingCenter));
+                .executeCommand(new ShutdownCommand());
     }
 
     public void lock() {
         new ControlUnitProxy(authenticatedRole, packageSortingCenter.getControlUnit())
-                .executeCommand(new LockCommand(packageSortingCenter));
+                .executeCommand(new LockCommand());
     }
 
     public void unlock() {
         new ControlUnitProxy(authenticatedRole, packageSortingCenter.getControlUnit())
-                .executeCommand(new UnlockCommand(packageSortingCenter));
+                .executeCommand(new UnlockCommand());
     }
 
     public void showStatistics() {
         new ControlUnitProxy(authenticatedRole, packageSortingCenter.getControlUnit())
-                .executeCommand(new ShutdownCommand(packageSortingCenter));
+                .executeCommand(new ShutdownCommand());
     }
 
-    public void changeSearchAlgorithm() {
+    public void changeSearchAlgorithm(SearchAlgorithm searchAlgorithm) {
         new ControlUnitProxy(authenticatedRole, packageSortingCenter.getControlUnit())
-                .executeCommand(new ChangeAlgorithmCommand(packageSortingCenter));
+                .executeCommand(new ChangeAlgorithmCommand(searchAlgorithm));
     }
 
 }
