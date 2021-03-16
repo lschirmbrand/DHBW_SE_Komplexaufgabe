@@ -1,5 +1,8 @@
 package packageSortingCenter.sortingSystem;
 
+import com.google.common.eventbus.Subscribe;
+import events.Subscriber;
+import events.sorting_system.SortEvent;
 import packageSortingCenter.StorageArea;
 import packageSortingCenter.sortingSystem.roboter.Robot;
 import packageSortingCenter.sortingSystem.sortingTracks.*;
@@ -10,14 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SortingSystem implements ISortingSystem {
+public class SortingSystem extends Subscriber implements ISortingSystem {
     Robot robot;
     StorageEmptyBox storageEmptyBox;
     StorageEmptyPallet storageEmptyPallet;
     List<StorageTrack> storageTracks;
-    SortingTrackNormal sortingTrackNormal;
-    SortingTrackExpress sortingTrackExpress;
-    SortingTrackValue sortingTrackValue;
+    SortingTrack sortingTrack;
 
     boolean locked;
 
@@ -29,9 +30,18 @@ public class SortingSystem implements ISortingSystem {
         for (int i = 0; i < 8; i++) {
             storageTracks.add(new StorageTrack(listener));
         }
-        sortingTrackNormal = new SortingTrackNormal();
-        sortingTrackExpress = new SortingTrackExpress();
-        sortingTrackValue = new SortingTrackValue();
+        SortingTrackValue valueTrack = new SortingTrackValue(null);
+        SortingTrackExpress expressTrack = new SortingTrackExpress(valueTrack);
+        sortingTrack = new SortingTrackNormal(expressTrack);
+    }
+
+    @Subscribe
+    public void receive(SortEvent event) {
+        storageTracks.forEach(storageTrack -> {
+            while(!storageTrack.isEmpty()) {
+                sortingTrack.sortPackage(storageTrack.getNext());
+            }
+        });
     }
 
     public void setLocked(boolean locked) {
@@ -54,17 +64,6 @@ public class SortingSystem implements ISortingSystem {
         return storageTracks;
     }
 
-    public SortingTrackNormal getSortingTrackNormal() {
-        return sortingTrackNormal;
-    }
-
-    public SortingTrackExpress getSortingTrackExpress() {
-        return sortingTrackExpress;
-    }
-
-    public SortingTrackValue getSortingTrackValue() {
-        return sortingTrackValue;
-    }
 
     public boolean isLocked() {
         return locked;

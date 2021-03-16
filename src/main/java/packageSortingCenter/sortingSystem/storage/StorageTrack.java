@@ -27,4 +27,12 @@ public class StorageTrack {
             sensor.trackIsFull();
         }
     }
+
+    public Package getNext() {
+        return packages.poll();
+    }
+
+    public boolean isEmpty() {
+        return packages.isEmpty();
+    }
 }
