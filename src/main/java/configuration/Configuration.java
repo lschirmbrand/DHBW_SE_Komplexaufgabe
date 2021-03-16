@@ -28,7 +28,4 @@ public enum Configuration {
     public EncryptionStrategy encryptionStrategy = EncryptionStrategy.AES;
 
     public String secretKey = "dhbw";
-
-    public String algorithmBM = "bm";
-    public String algorithmRK = "rk";
 }
