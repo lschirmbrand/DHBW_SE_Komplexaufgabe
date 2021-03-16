@@ -1,6 +1,7 @@
 package control;
 
 import com.google.common.eventbus.EventBus;
+import events.Subscriber;
 import com.google.common.eventbus.Subscribe;
 import configuration.Configuration;
 import configuration.SearchAlgorithm;

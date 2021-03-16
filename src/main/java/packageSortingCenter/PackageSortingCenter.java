@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+@SuppressWarnings("ALL")
 public class PackageSortingCenter implements IPackageSortingCenter {
     private final CSVReader csvReader;
 
