@@ -2,11 +2,13 @@ package utillity.csvTools;
 
 import configuration.Configuration;
 import packagingElements.boxes.Box;
+import packagingElements.boxes.BoxFactory;
 import packagingElements.packages.Package;
 import packagingElements.packages.PackageFactory;
 import packagingElements.pallets.Pallet;
-import utillity.csvTools.CSVWriter;
+import packagingElements.pallets.PalletFactory;
 import vehicle.lkw.LKW;
+import vehicle.lkw.LKWFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +19,14 @@ public class CSVBuilder {
         CSVWriter csvWriter = new CSVWriter();
 
         // create packages
-        ArrayList<Package> packages = new ArrayList<>();
+        List<Package> packages = new ArrayList<>();
         for (int i = 0; i < Configuration.instance.numberOfPackages; i++) {
-            packages.add(PackageFactory.buildPackage());
+            packages.add(PackageFactory.build());
         }
 
         // Add exp|os!ve to 4 random packages
         List<Integer> explosiveIndexes = new ArrayList<>();
+
         for (int i = 0; i < 4; i++) {
             int j;
             do {
@@ -31,38 +34,56 @@ public class CSVBuilder {
             } while (explosiveIndexes.contains(j));
             explosiveIndexes.add(j);
         }
-        explosiveIndexes.stream().map(packages::get).forEach(Package::addExplosive);
+        for (Integer explosiveIndex : explosiveIndexes) {
+            addExplosive(packages.get(explosiveIndex));
+        }
 
         // write packages to csv
-        csvWriter.setPackageList(packages);
-        csvWriter.writePackage();
+        csvWriter.writePackage(packages);
 
-        ArrayList<Box> boxes = new ArrayList<>();
+        // boxes
+        List<Box> boxes = new ArrayList<>();
         for (int i = 0; i < Configuration.instance.numberOfBoxes; i++) {
-            boxes.add(new Box());
-            boxes.get(i).fillBox(packages);
+            boxes.add(BoxFactory.build(packages.subList(i * 40, (i + 1) * 40)));
         }
 
-        csvWriter.setBoxList(boxes);
-        csvWriter.writeBox();
+        csvWriter.writeBox(boxes);
 
-        ArrayList<Pallet> pallets = new ArrayList<>();
+        // pallets
+        List<Pallet> pallets = new ArrayList<>();
         for (int i = 0; i < Configuration.instance.numberOfPallets; i++) {
-            pallets.add(new Pallet(i));
-            pallets.get(i).fillPallet(boxes);
+            pallets.add(PalletFactory.build(boxes.subList(i * 12, (i + 1) * 12)));
         }
 
-        csvWriter.setPalletList(pallets);
-        csvWriter.writePallet();
+        csvWriter.writePallet(pallets);
 
+        // lkw
         ArrayList<LKW> lkws = new ArrayList<>();
         for (int i = 0; i < Configuration.instance.numberOfLKWS; i++) {
-            lkws.add(new LKW());
-            lkws.get(i).fillTrailer(pallets);
+            LKW lkw = LKWFactory.build();
+            lkws.add(lkw);
+            lkw.loadTrailer(pallets.subList(i * 10, (i + 1) * 10));
         }
 
-        csvWriter.setLKWList(lkws);
-        csvWriter.writeLKW();
+        csvWriter.writeLKW(lkws);
 
+    }
+
+    public static void addExplosive(Package pack) {
+        String[][] content = pack.getContent();
+
+        String exp = "exp!os:ve";
+        int contHeight = content.length;
+        int h = ThreadLocalRandom.current().nextInt(contHeight);
+        int contWidth = content[0].length;
+        int w = ThreadLocalRandom.current().nextInt(contWidth);
+        int contLength = content[0][0].length();
+        int l = ThreadLocalRandom.current().nextInt(contLength - exp.length() + 1);
+
+        String line = content[h][w];
+        line = line.substring(0, l) + exp + line.substring(l + exp.length());
+        content[h][w] = line;
+
+        pack.setContent(content);
     }
 }

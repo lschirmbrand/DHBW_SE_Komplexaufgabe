@@ -1,16 +1,10 @@
 package packageSortingCenter.commands;
 
-import packageSortingCenter.PackageSortingCenter;
+import control.ControlUnit;
 
 public class ShutdownCommand implements ICommand {
-    private final PackageSortingCenter packageSortingCenter;
-
-    public ShutdownCommand(PackageSortingCenter packageSortingCenter) {
-        this.packageSortingCenter = packageSortingCenter;
-    }
-
     @Override
-    public void execute() {
-        packageSortingCenter.shutdown();
+    public void execute(ControlUnit controlUnit) {
+        controlUnit.shutdown();
     }
 }

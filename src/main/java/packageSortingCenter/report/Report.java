@@ -1,6 +1,6 @@
 package packageSortingCenter.report;
 
-import packagingElements.packages.Package;
+import packagingElements.packages.PackageType;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class Report {
     private String[] numberPackagesGrouped;
     private int numberDangerousPackages;
 
-    private Report(Builder builder){
+    private Report(Builder builder) {
         date = builder.date;
         dispatchedLKWs = builder.dispatchedLKWs;
         numberPackagesGrouped = builder.numberPackagesGrouped;
@@ -29,7 +29,7 @@ public class Report {
         sb.append("\nNumber of dispatched LKW: ");
         sb.append(dispatchedLKWs);
         sb.append("Grouped Categories & Amount:\n");
-        for(String s : numberPackagesGrouped){
+        for (String s : numberPackagesGrouped) {
             sb.append(s);
         }
         sb.append("Number of dangerous Packages: ");
@@ -40,7 +40,7 @@ public class Report {
         printWriter.close();
     }
 
-    public static class Builder{
+    public static class Builder {
 
         private Date date;
         private int dispatchedLKWs;
@@ -48,52 +48,52 @@ public class Report {
         private int numberDangerousPackages;
 
 
-        public Builder date(){
+        public Builder date() {
             this.date = new Date();
             return this;
         }
 
-        public Builder dispatchedLKWs(int size){
+        public Builder dispatchedLKWs(int size) {
             this.dispatchedLKWs = size;
             return this;
         }
 
-        public Builder setNumberPackagesGrouped(EnumMap<Package.PackageTypeE, Integer> packageType){
+        public Builder setNumberPackagesGrouped(EnumMap<PackageType, Integer> packageType) {
             String[] numberPackagesGrouped = new String[3];
             StringBuilder sb = new StringBuilder();
-            sb.append(Package.PackageTypeE.NORMAL.toString());
+            sb.append(PackageType.NORMAL.toString());
             sb.append(": ");
-            sb.append(packageType.get(Package.PackageTypeE.NORMAL));
+            sb.append(packageType.get(PackageType.NORMAL));
             sb.append(";\n");
             numberPackagesGrouped[0] = sb.toString();
 
             //clear stringbuilder
             sb.setLength(0);
 
-            sb.append(Package.PackageTypeE.EXPRESS.toString());
+            sb.append(PackageType.EXPRESS.toString());
             sb.append(": ");
-            sb.append(packageType.get(Package.PackageTypeE.EXPRESS));
+            sb.append(packageType.get(PackageType.EXPRESS));
             sb.append(";\n");
             numberPackagesGrouped[1] = sb.toString();
 
             //clear stringbuilder
             sb.setLength(0);
 
-            sb.append(Package.PackageTypeE.VALUE.toString());
+            sb.append(PackageType.VALUE.toString());
             sb.append(": ");
-            sb.append(packageType.get(Package.PackageTypeE.VALUE));
+            sb.append(packageType.get(PackageType.VALUE));
             sb.append(";\n");
             numberPackagesGrouped[2] = sb.toString();
 
             return this;
         }
 
-        public Builder setNumberDangerousPackages(int amount){
+        public Builder setNumberDangerousPackages(int amount) {
             this.numberDangerousPackages = amount;
             return this;
         }
 
-        public Report build(){
+        public Report build() {
             return new Report(this);
         }
     }

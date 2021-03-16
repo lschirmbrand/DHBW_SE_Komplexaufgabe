@@ -1,5 +1,7 @@
 package packageSortingCenter;
 
+import configuration.SearchAlgorithm;
+
 public interface IPackageSortingCenter {
     void init();
 
@@ -13,5 +15,5 @@ public interface IPackageSortingCenter {
 
     void showStatistics();
 
-    void changeAlgorithm();
+    void changeAlgorithm(SearchAlgorithm algorithm);
 }

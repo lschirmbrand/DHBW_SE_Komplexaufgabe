@@ -1,17 +1,10 @@
 package packageSortingCenter.commands;
 
-import packageSortingCenter.PackageSortingCenter;
+import control.ControlUnit;
 
 public class InitCommand implements ICommand {
-
-    private final PackageSortingCenter packageSortingCenter;
-
-    public InitCommand(PackageSortingCenter packageSortingCenter) {
-        this.packageSortingCenter = packageSortingCenter;
-    }
-
     @Override
-    public void execute() {
-        packageSortingCenter.init();
+    public void execute(ControlUnit controlUnit) {
+        controlUnit.init();
     }
 }

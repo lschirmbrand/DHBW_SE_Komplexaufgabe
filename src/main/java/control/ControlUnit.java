@@ -2,77 +2,92 @@ package control;
 
 import com.google.common.eventbus.EventBus;
 import events.Subscriber;
+import com.google.common.eventbus.Subscribe;
+import configuration.Configuration;
+import configuration.SearchAlgorithm;
+import events.Subscriber;
+import events.UnloadingFinishedEvent;
+import events.autonomous_vehicle.UnloadEvent;
+import events.robot.StartEmptyingEvent;
+import events.sorting_system.SortEvent;
 import packageSortingCenter.PackageSortingCenter;
-import packageSortingCenter.commands.*;
+import packageSortingCenter.commands.ICommand;
+import packageSortingCenter.sortingSystem.storage.sensor.ITrackLevelListener;
+import packageSortingCenter.unloadingZone.sensor.IUnloadingListener;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 
-public class ControlUnit implements IControlUnit {
+public class ControlUnit extends Subscriber implements IControlUnit, IUnloadingListener, ITrackLevelListener {
 
     private final EventBus eventBus;
-
     private final PackageSortingCenter packageSortingCenter;
-    private final ChangeAlgorithmCommand changeAlgorithmCommand;
-    private final InitCommand initCommand;
-    private final LockCommand lockCommand;
-    private final UnlockCommand unlockCommand;
-    private final NextCommand nextCommand;
-    private final ShowStatisticsCommand showStatisticsCommand;
-    private final ShutdownCommand shutdownCommand;
+
+    private int filledStorageTracks = 0;
 
     public ControlUnit(PackageSortingCenter packageSortingCenter) {
         this.packageSortingCenter = packageSortingCenter;
-        changeAlgorithmCommand = new ChangeAlgorithmCommand(packageSortingCenter);
-        initCommand = new InitCommand(packageSortingCenter);
-        lockCommand = new LockCommand(packageSortingCenter);
-        unlockCommand = new UnlockCommand(packageSortingCenter);
-        nextCommand = new NextCommand(packageSortingCenter);
-        showStatisticsCommand = new ShowStatisticsCommand(packageSortingCenter);
-        shutdownCommand = new ShutdownCommand(packageSortingCenter);
 
         eventBus = new EventBus("SortingCenter");
+        addEventSubscriber(this);
     }
 
-    public void addSubscriber(Subscriber subscriber){
+    public void addEventSubscriber(Subscriber subscriber) {
         eventBus.register(subscriber);
     }
 
-    @Override
+    public void executeCommand(ICommand command) {
+        command.execute(this);
+    }
+
     public void init() {
         packageSortingCenter.init();
     }
 
-    @Override
     public void next() {
         packageSortingCenter.next();
     }
 
-    @Override
     public void shutdown() {
         packageSortingCenter.shutdown();
     }
 
-    @Override
     public void lock() {
         packageSortingCenter.lock();
     }
 
-    @Override
     public void unlock() {
         packageSortingCenter.unlock();
     }
 
-    @Override
     public void showStatistics() {
         packageSortingCenter.showStatistics();
     }
 
-    @Override
-    public void changeAlgorithm() {
-        packageSortingCenter.changeAlgorithm();
+    public void changeAlgorithm(SearchAlgorithm searchAlgorithm) {
+        packageSortingCenter.changeAlgorithm(searchAlgorithm);
+    }
+
+    public void sensorTriggered(int zoneID) {
+        int vehicleID = ThreadLocalRandom.current().nextInt(Configuration.instance.numberOfAutonomousVehicles);
+        eventBus.post(new UnloadEvent(vehicleID, zoneID));
+    }
+
+    public EventBus getEventBus() {
+        return eventBus;
+    }
+
+    @Subscribe
+    public void receive(UnloadingFinishedEvent event) {
+        eventBus.post(new StartEmptyingEvent());
     }
 
     @Override
-    public void sensorTriggered() {
-
+    public void trackFull() {
+        filledStorageTracks++;
+        if(filledStorageTracks == 8) {
+            eventBus.post(new SortEvent());
+            filledStorageTracks = 0;
+        }
     }
 }
