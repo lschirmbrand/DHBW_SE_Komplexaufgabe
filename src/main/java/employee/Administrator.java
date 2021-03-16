@@ -1,6 +1,5 @@
 package employee;
 
-import configuration.Configuration;
 import employee.idCard.IDCard;
 
 public class Administrator extends Employee {

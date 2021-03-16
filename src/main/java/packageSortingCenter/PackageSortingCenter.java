@@ -3,14 +3,13 @@ package packageSortingCenter;
 import configuration.Configuration;
 import configuration.SearchAlgorithm;
 import control.ControlUnit;
-import org.checkerframework.checker.units.qual.A;
-import utillity.csvTools.CSVReader;
-import vehicle.autonomous_vehicle.AutonomousVehicle;
-import vehicle.lkw.LKW;
 import packageSortingCenter.parkingZoneAutonom.ParkingZone;
 import packageSortingCenter.sortingSystem.SortingSystem;
 import packageSortingCenter.unloadingZone.UnloadingZone;
 import packageSortingCenter.waitingZone.WaitingZone;
+import utillity.csvTools.CSVReader;
+import vehicle.autonomous_vehicle.AutonomousVehicle;
+import vehicle.lkw.LKW;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +28,7 @@ public class PackageSortingCenter implements IPackageSortingCenter {
     public PackageSortingCenter() {
         csvReader = new CSVReader();
         controlUnit = new ControlUnit(this);
-        unloadingZones =new ArrayList<>();
+        unloadingZones = new ArrayList<>();
         for (int i = 0; i < Configuration.instance.numberOfUnloadingZones; i++) {
             unloadingZones.add(new UnloadingZone(controlUnit, i));
         }

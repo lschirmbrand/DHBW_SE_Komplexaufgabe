@@ -9,12 +9,6 @@ public class ControlUnitProxy implements IControlUnit {
 
     private final EmployeeRole role;
     private final ControlUnit controlUnit;
-
-    public ControlUnitProxy(EmployeeRole role, ControlUnit controlUnit) {
-        this.role = role;
-        this.controlUnit = controlUnit;
-    }
-
     private final List<EmployeeRole> allowedForInit = List.of(
             EmployeeRole.SUPERVISOR
     );
@@ -41,6 +35,10 @@ public class ControlUnitProxy implements IControlUnit {
     private final List<EmployeeRole> allowedForChangeAlgorithm = List.of(
             EmployeeRole.SUPERVISOR
     );
+    public ControlUnitProxy(EmployeeRole role, ControlUnit controlUnit) {
+        this.role = role;
+        this.controlUnit = controlUnit;
+    }
 
     @Override
     public void executeCommand(ICommand command) {

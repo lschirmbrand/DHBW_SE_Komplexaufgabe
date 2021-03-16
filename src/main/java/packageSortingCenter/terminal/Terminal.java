@@ -1,11 +1,10 @@
 package packageSortingCenter.terminal;
 
 import configuration.SearchAlgorithm;
-import control.IControlUnit;
+import control.ControlUnitProxy;
 import employee.EmployeeRole;
 import packageSortingCenter.PackageSortingCenter;
 import packageSortingCenter.commands.*;
-import control.ControlUnitProxy;
 
 public class Terminal {
 

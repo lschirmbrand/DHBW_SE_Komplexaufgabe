@@ -1,10 +1,6 @@
 package packagingElements.boxes;
 
-import configuration.Configuration;
-import utillity.idGenerator.IDGenerator;
 import packagingElements.packages.Package;
-
-import java.util.ArrayList;
 
 public class Box {
     private final String id;

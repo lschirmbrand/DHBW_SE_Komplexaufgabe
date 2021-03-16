@@ -7,18 +7,17 @@ import vehicle.lkw.LKW;
 public class UnloadingZone {
 
     private final int id;
-    private LKW parkedLKW;
+    public int getId;
     UnloadingDetector unloadingDetector;
     ControlUnit controlUnit;
+    private LKW parkedLKW;
 
-    public UnloadingZone(ControlUnit controlUnit, int id){
+    public UnloadingZone(ControlUnit controlUnit, int id) {
         this.controlUnit = controlUnit;
         this.id = id;
         unloadingDetector = new UnloadingDetector(id);
         unloadingDetector.addListener(controlUnit);
     }
-
-    public int getId;
 
     public void parkLKW(LKW lkw) {
         this.parkedLKW = lkw;

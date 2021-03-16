@@ -1,7 +1,6 @@
 package packageSortingCenter.commands;
 
 import control.ControlUnit;
-import packageSortingCenter.PackageSortingCenter;
 
 public class UnlockCommand implements ICommand {
     @Override

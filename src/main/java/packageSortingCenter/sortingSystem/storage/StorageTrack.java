@@ -1,7 +1,7 @@
 package packageSortingCenter.sortingSystem.storage;
 
-import packageSortingCenter.sortingSystem.storage.sensor.LevelSensor;
 import packageSortingCenter.sortingSystem.storage.sensor.ITrackLevelListener;
+import packageSortingCenter.sortingSystem.storage.sensor.LevelSensor;
 import packagingElements.packages.Package;
 
 import java.util.ArrayDeque;

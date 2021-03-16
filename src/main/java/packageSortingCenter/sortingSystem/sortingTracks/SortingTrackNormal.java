@@ -3,7 +3,7 @@ package packageSortingCenter.sortingSystem.sortingTracks;
 import packagingElements.packages.Package;
 import packagingElements.packages.PackageType;
 
-public class SortingTrackNormal extends SortingTrack{
+public class SortingTrackNormal extends SortingTrack {
 
 
     public SortingTrackNormal(SortingTrack nextTrack) {
@@ -12,7 +12,7 @@ public class SortingTrackNormal extends SortingTrack{
 
     @Override
     public void sortPackage(Package pack) {
-        if(pack.getPackageType() != PackageType.NORMAL) {
+        if (pack.getPackageType() != PackageType.NORMAL) {
             nextTrack.sortPackage(pack);
         }
     }

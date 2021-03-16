@@ -24,7 +24,7 @@ public class PackageFactory {
         List<Character> pool = IntStream.range(97, 123).mapToObj(value -> (char) value).collect(Collectors.toList());
         pool.addAll(List.of('.', ':', '-', '!'));
 
-        String [][] content = new String[contHeight][contWidth];
+        String[][] content = new String[contHeight][contWidth];
         for (int h = 0; h < contHeight; h++) {
             for (int w = 0; w < contWidth; w++) {
                 content[h][w] = "";

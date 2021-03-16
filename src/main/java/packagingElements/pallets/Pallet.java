@@ -1,9 +1,6 @@
 package packagingElements.pallets;
 
 import packagingElements.boxes.Box;
-import configuration.Configuration;
-
-import java.util.ArrayList;
 
 public class Pallet {
 

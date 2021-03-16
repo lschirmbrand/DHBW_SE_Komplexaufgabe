@@ -5,8 +5,13 @@ import events.Subscriber;
 import events.sorting_system.SortEvent;
 import packageSortingCenter.StorageArea;
 import packageSortingCenter.sortingSystem.roboter.Robot;
-import packageSortingCenter.sortingSystem.sortingTracks.*;
-import packageSortingCenter.sortingSystem.storage.*;
+import packageSortingCenter.sortingSystem.sortingTracks.SortingTrack;
+import packageSortingCenter.sortingSystem.sortingTracks.SortingTrackExpress;
+import packageSortingCenter.sortingSystem.sortingTracks.SortingTrackNormal;
+import packageSortingCenter.sortingSystem.sortingTracks.SortingTrackValue;
+import packageSortingCenter.sortingSystem.storage.StorageEmptyBox;
+import packageSortingCenter.sortingSystem.storage.StorageEmptyPallet;
+import packageSortingCenter.sortingSystem.storage.StorageTrack;
 import packageSortingCenter.sortingSystem.storage.sensor.ITrackLevelListener;
 
 import java.util.ArrayList;
@@ -22,7 +27,7 @@ public class SortingSystem extends Subscriber implements ISortingSystem {
 
     boolean locked;
 
-    public SortingSystem(StorageArea storageArea, ITrackLevelListener listener){
+    public SortingSystem(StorageArea storageArea, ITrackLevelListener listener) {
         robot = new Robot(this, storageArea);
         storageEmptyBox = new StorageEmptyBox();
         storageEmptyPallet = new StorageEmptyPallet();
@@ -38,14 +43,10 @@ public class SortingSystem extends Subscriber implements ISortingSystem {
     @Subscribe
     public void receive(SortEvent event) {
         storageTracks.forEach(storageTrack -> {
-            while(!storageTrack.isEmpty()) {
+            while (!storageTrack.isEmpty()) {
                 sortingTrack.sortPackage(storageTrack.getNext());
             }
         });
-    }
-
-    public void setLocked(boolean locked) {
-        this.locked = locked;
     }
 
     public Robot getRobot() {
@@ -64,8 +65,11 @@ public class SortingSystem extends Subscriber implements ISortingSystem {
         return storageTracks;
     }
 
-
     public boolean isLocked() {
         return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
     }
 }

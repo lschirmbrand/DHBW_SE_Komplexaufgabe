@@ -2,8 +2,6 @@ package packageSortingCenter.commands;
 
 import configuration.SearchAlgorithm;
 import control.ControlUnit;
-import control.IControlUnit;
-import packageSortingCenter.PackageSortingCenter;
 
 public class ChangeAlgorithmCommand implements ICommand {
     private SearchAlgorithm searchAlgorithm;

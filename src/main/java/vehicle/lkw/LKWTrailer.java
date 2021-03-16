@@ -30,7 +30,7 @@ public class LKWTrailer {
                 side = 1;
             }
 
-            if(pos < 0) {
+            if (pos < 0) {
                 return null;
             }
         }
@@ -39,11 +39,11 @@ public class LKWTrailer {
         return next;
     }
 
-    public void setCargo(Pallet[][] cargo) {
-        this.cargo = cargo;
-    }
-
     public Pallet[][] getCargo() {
         return cargo;
+    }
+
+    public void setCargo(Pallet[][] cargo) {
+        this.cargo = cargo;
     }
 }
