@@ -14,6 +14,9 @@ public class SortingTrackNormal extends SortingTrack {
     public void sortPackage(Package pack) {
         if (pack.getPackageType() != PackageType.NORMAL) {
             nextTrack.sortPackage(pack);
+            return;
         }
+
+        scan(pack);
     }
 }

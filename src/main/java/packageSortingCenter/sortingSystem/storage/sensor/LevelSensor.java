@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LevelSensor {
-    private List<ITrackLevelListener> listeners;
+    private final List<ITrackLevelListener> listeners;
 
     public LevelSensor() {
         listeners = new ArrayList<>();

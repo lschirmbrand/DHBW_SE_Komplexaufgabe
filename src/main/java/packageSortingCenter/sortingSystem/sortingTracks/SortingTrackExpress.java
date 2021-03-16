@@ -12,6 +12,8 @@ public class SortingTrackExpress extends SortingTrack {
     public void sortPackage(Package pack) {
         if (pack.getPackageType() != PackageType.EXPRESS) {
             nextTrack.sortPackage(pack);
+            return;
         }
+        scan(pack);
     }
 }

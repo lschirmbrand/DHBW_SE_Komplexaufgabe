@@ -26,6 +26,7 @@ public class CSVBuilder {
 
         // Add exp|os!ve to 4 random packages
         List<Integer> explosiveIndexes = new ArrayList<>();
+
         for (int i = 0; i < 4; i++) {
             int j;
             do {
@@ -33,7 +34,9 @@ public class CSVBuilder {
             } while (explosiveIndexes.contains(j));
             explosiveIndexes.add(j);
         }
-        explosiveIndexes.stream().map(packages::get).forEach(Package::addExplosive);
+        for (Integer explosiveIndex : explosiveIndexes) {
+            addExplosive(packages.get(explosiveIndex));
+        }
 
         // write packages to csv
         csvWriter.writePackage(packages);
@@ -64,5 +67,23 @@ public class CSVBuilder {
 
         csvWriter.writeLKW(lkws);
 
+    }
+
+    public static void addExplosive(Package pack) {
+        String[][] content = pack.getContent();
+
+        String exp = "exp!os:ve";
+        int contHeight = content.length;
+        int h = ThreadLocalRandom.current().nextInt(contHeight);
+        int contWidth = content[0].length;
+        int w = ThreadLocalRandom.current().nextInt(contWidth);
+        int contLength = content[0][0].length();
+        int l = ThreadLocalRandom.current().nextInt(contLength - exp.length() + 1);
+
+        String line = content[h][w];
+        line = line.substring(0, l) + exp + line.substring(l + exp.length());
+        content[h][w] = line;
+
+        pack.setContent(content);
     }
 }

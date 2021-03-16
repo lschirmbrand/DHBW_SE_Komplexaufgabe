@@ -43,6 +43,7 @@ public class PackageSortingCenter implements IPackageSortingCenter {
         storageArea = new StorageArea();
         sortingSystem = new SortingSystem(storageArea, controlUnit);
         controlUnit.addEventSubscriber(sortingSystem.getRobot());
+        controlUnit.addEventSubscriber(sortingSystem);
     }
 
     public ControlUnit getControlUnit() {

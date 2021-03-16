@@ -12,7 +12,32 @@ public class BoyerMoore {
     }
 
     public int innerMatch(String pattern, String text) {
-        return 0;
+        int i = pattern.length() - 1;
+        int j = pattern.length() - 1;
+
+        do {
+            if (pattern.charAt(j) == text.charAt(i)) {
+                if (j == 0) {
+                    return 0;
+                } else {
+                    i--;
+                    j--;
+                }
+            } else {
+                i = i + pattern.length() - Math.min(j, 1 + last(text.charAt(i), pattern));
+                j = pattern.length() - 1;
+            }
+        } while (i <= text.length() - 1);
+        return -1;
+    }
+
+    private int last(char c, String pattern) {
+        for (int i = pattern.length() - 1; i >= 0; i--) {
+            if (pattern.charAt(i) == c) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public class Port implements ISearchAlgorithm {

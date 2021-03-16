@@ -11,5 +11,9 @@ public class Application {
         ControlUnit controlUnit = packageSortingCenter.getControlUnit();
         controlUnit.executeCommand(new InitCommand());
         controlUnit.executeCommand(new NextCommand());
+        controlUnit.executeCommand(new NextCommand());
+        controlUnit.executeCommand(new NextCommand());
+        controlUnit.executeCommand(new NextCommand());
+        controlUnit.executeCommand(new NextCommand());
     }
 }

@@ -12,6 +12,8 @@ public class SortingTrackValue extends SortingTrack {
     public void sortPackage(Package pack) {
         if (pack.getPackageType() != PackageType.VALUE) {
             nextTrack.sortPackage(pack);
+            return;
         }
+        scan(pack);
     }
 }

@@ -8,6 +8,7 @@ import events.Subscriber;
 import events.UnloadingFinishedEvent;
 import events.autonomous_vehicle.UnloadEvent;
 import events.robot.StartEmptyingEvent;
+import events.sorting_system.SortEvent;
 import packageSortingCenter.PackageSortingCenter;
 import packageSortingCenter.commands.ICommand;
 import packageSortingCenter.sortingSystem.storage.sensor.ITrackLevelListener;
@@ -19,8 +20,9 @@ import java.util.concurrent.ThreadLocalRandom;
 public class ControlUnit extends Subscriber implements IControlUnit, IUnloadingListener, ITrackLevelListener {
 
     private final EventBus eventBus;
-
     private final PackageSortingCenter packageSortingCenter;
+
+    private int filledStorageTracks = 0;
 
     public ControlUnit(PackageSortingCenter packageSortingCenter) {
         this.packageSortingCenter = packageSortingCenter;
@@ -81,6 +83,10 @@ public class ControlUnit extends Subscriber implements IControlUnit, IUnloadingL
 
     @Override
     public void trackFull() {
-        System.out.println("full");
+        filledStorageTracks++;
+        if(filledStorageTracks == 8) {
+            eventBus.post(new SortEvent());
+            filledStorageTracks = 0;
+        }
     }
 }

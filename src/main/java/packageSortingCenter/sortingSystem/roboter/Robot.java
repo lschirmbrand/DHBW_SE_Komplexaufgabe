@@ -43,7 +43,8 @@ public class Robot extends Subscriber {
                         for (int l = 0; l < packages.length; l++) {
                             for (int m = 0; m < packages[0].length; m++) {
                                 for (int n = 0; n < packages[0][0].length; n++) {
-                                    tracks.get(trackIndex).putPackageOnTrack(packages[l][m][n]);
+                                    Package pack = packages[l][m][n];
+                                    tracks.get(trackIndex).putPackageOnTrack(pack);
                                     trackIndex = (trackIndex + 1) % tracks.size();
                                 }
                             }

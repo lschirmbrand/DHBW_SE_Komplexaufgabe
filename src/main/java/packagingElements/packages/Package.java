@@ -6,7 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Package {
 
     private final String id;
-    private final String[][] content;
+    private String[][] content;
     private final int zipCode;
     private final PackageType packageType;
     private final double weight;
@@ -18,20 +18,6 @@ public class Package {
         this.zipCode = zipCode;
         this.packageType = packageType;
         this.weight = weight;
-    }
-
-    public void addExplosive() {
-        String exp = "exp|os!ve";
-        int contHeight = content.length;
-        int h = ThreadLocalRandom.current().nextInt(contHeight);
-        int contWidth = content[0].length;
-        int w = ThreadLocalRandom.current().nextInt(contWidth);
-        int contLength = content[0][0].length();
-        int l = ThreadLocalRandom.current().nextInt(contLength - exp.length() + 1);
-
-        String line = content[h][w];
-        line = line.substring(0, l) + exp + line.substring(l + exp.length());
-        content[h][w] = line;
     }
 
     public String getId() {
@@ -69,4 +55,7 @@ public class Package {
         return weight;
     }
 
+    public void setContent(String[][] content) {
+        this.content = content;
+    }
 }
