@@ -35,6 +35,7 @@ public class ControlUnitProxy implements IControlUnit {
     private final List<EmployeeRole> allowedForChangeAlgorithm = List.of(
             EmployeeRole.SUPERVISOR
     );
+
     public ControlUnitProxy(EmployeeRole role, ControlUnit controlUnit) {
         this.role = role;
         this.controlUnit = controlUnit;
@@ -45,30 +46,44 @@ public class ControlUnitProxy implements IControlUnit {
         if (command instanceof InitCommand) {
             if (allowedForInit.contains(role)) {
                 controlUnit.executeCommand(command);
+            } else {
+                throw new UnauthorizedException();
             }
         } else if (command instanceof NextCommand) {
             if (allowedForNext.contains(role)) {
                 controlUnit.executeCommand(command);
+            } else {
+                throw new UnauthorizedException();
             }
         } else if (command instanceof ShutdownCommand) {
             if (allowedForShutdown.contains(role)) {
                 controlUnit.executeCommand(command);
+            } else {
+                throw new UnauthorizedException();
             }
         } else if (command instanceof LockCommand) {
             if (allowedForLock.contains(role)) {
                 controlUnit.executeCommand(command);
+            } else {
+                throw new UnauthorizedException();
             }
         } else if (command instanceof UnlockCommand) {
             if (allowedForUnlock.contains(role)) {
                 controlUnit.executeCommand(command);
+            } else {
+                throw new UnauthorizedException();
             }
         } else if (command instanceof ShowStatisticsCommand) {
             if (allowedForShutdown.contains(role)) {
                 controlUnit.executeCommand(command);
+            } else {
+                throw new UnauthorizedException();
             }
         } else if (command instanceof ChangeAlgorithmCommand) {
             if (allowedForChangeAlgorithm.contains(role)) {
                 controlUnit.executeCommand(command);
+            } else {
+                throw new UnauthorizedException();
             }
         }
     }

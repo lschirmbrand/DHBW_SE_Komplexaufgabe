@@ -18,7 +18,7 @@ public class SearchAlgorithmFactory {
 
         String className = switch (algorithm) {
             case BOYER_MOORE -> "BoyerMoore";
-            case RABIN_KARP -> "RobinKarp";
+            case RABIN_KARP -> "RabinKarp";
         };
 
         try {

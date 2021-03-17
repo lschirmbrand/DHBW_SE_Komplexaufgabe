@@ -4,18 +4,24 @@ import configuration.Configuration;
 import configuration.SearchAlgorithm;
 import control.ControlUnit;
 import packageSortingCenter.parkingZoneAutonom.ParkingZone;
+import packageSortingCenter.report.Report;
 import packageSortingCenter.sortingSystem.SortingSystem;
 import packageSortingCenter.unloadingZone.UnloadingZone;
 import packageSortingCenter.waitingZone.WaitingZone;
+import packagingElements.packages.Package;
+import packagingElements.packages.PackageType;
 import utillity.csvTools.CSVReader;
 import vehicle.autonomous_vehicle.AutonomousVehicle;
 import vehicle.lkw.LKW;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-@SuppressWarnings("ALL")
+
 public class PackageSortingCenter implements IPackageSortingCenter {
     private final CSVReader csvReader;
 
@@ -25,6 +31,10 @@ public class PackageSortingCenter implements IPackageSortingCenter {
     private final ParkingZone parkingZone;
     private final WaitingZone waitingZone;
     private final StorageArea storageArea;
+
+    private int numberDispatchedLKW = 0;
+    private int numberDangerousPackages = 0;
+    private final EnumMap<PackageType, Integer> scannedPackages = new EnumMap<>(PackageType.class);
 
     public PackageSortingCenter() {
         csvReader = new CSVReader();
@@ -42,9 +52,13 @@ public class PackageSortingCenter implements IPackageSortingCenter {
 
         waitingZone = new WaitingZone();
         storageArea = new StorageArea();
-        sortingSystem = new SortingSystem(storageArea, controlUnit);
+        sortingSystem = new SortingSystem(this, storageArea, controlUnit);
         controlUnit.addEventSubscriber(sortingSystem.getRobot());
         controlUnit.addEventSubscriber(sortingSystem);
+
+        scannedPackages.put(PackageType.NORMAL, 0);
+        scannedPackages.put(PackageType.EXPRESS, 0);
+        scannedPackages.put(PackageType.VALUE, 0);
     }
 
     public ControlUnit getControlUnit() {
@@ -61,6 +75,7 @@ public class PackageSortingCenter implements IPackageSortingCenter {
         LKW lkw = waitingZone.getNext();
         int unloadingIndex = ThreadLocalRandom.current().nextInt(unloadingZones.size());
         unloadingZones.get(unloadingIndex).parkLKW(lkw);
+        numberDispatchedLKW++;
     }
 
     @Override
@@ -68,6 +83,7 @@ public class PackageSortingCenter implements IPackageSortingCenter {
         for (UnloadingZone zone : unloadingZones) {
             zone.deactivateSensor();
         }
+        sortingSystem.unloadComponents();
     }
 
     @Override
@@ -82,22 +98,31 @@ public class PackageSortingCenter implements IPackageSortingCenter {
 
     @Override
     public void showStatistics() {
-//        Report report = new Report.Builder()
-//                .date()
-//                .dispatchedLKWs(dispatchedLKW.size())
-//                .setNumberDangerousPackages(numberDangerousPackages)
-//                .setNumberPackagesGrouped(packageTypeCount)
-//                .build();
-//        try {
-//            report.writeToLog();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        Report report = new Report.Builder()
+                .date(new Date())
+                .dispatchedLKWs(numberDispatchedLKW)
+                .numberDangerousPackages(numberDangerousPackages)
+                .numberPackagesGrouped(scannedPackages)
+                .build();
+        try {
+            report.writeToLog();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void changeAlgorithm(SearchAlgorithm algorithm) {
+        sortingSystem.changeSearchAlgorithm(algorithm);
+    }
 
+    public void packageScanned(Package pack, boolean dangerous) {
+        PackageType packageType = pack.getPackageType();
+        scannedPackages.put(packageType, scannedPackages.get(packageType) + 1);
+
+        if (dangerous) {
+            numberDangerousPackages++;
+        }
     }
 
     public List<UnloadingZone> getUnloadingZones() {

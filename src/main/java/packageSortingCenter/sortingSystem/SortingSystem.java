@@ -4,6 +4,7 @@ import com.google.common.eventbus.Subscribe;
 import configuration.SearchAlgorithm;
 import events.Subscriber;
 import events.sorting_system.SortEvent;
+import packageSortingCenter.PackageSortingCenter;
 import packageSortingCenter.StorageArea;
 import packageSortingCenter.sortingSystem.roboter.Robot;
 import packageSortingCenter.sortingSystem.sortingTracks.*;
@@ -18,6 +19,8 @@ import java.util.List;
 
 
 public class SortingSystem extends Subscriber implements ISortingSystem {
+    PackageSortingCenter packageSortingCenter;
+
     Robot robot;
     StorageEmptyBox storageEmptyBox;
     StorageEmptyPallet storageEmptyPallet;
@@ -26,7 +29,9 @@ public class SortingSystem extends Subscriber implements ISortingSystem {
 
     boolean locked;
 
-    public SortingSystem(StorageArea storageArea, ITrackLevelListener listener) {
+    public SortingSystem(PackageSortingCenter packageSortingCenter, StorageArea storageArea, ITrackLevelListener listener) {
+        this.packageSortingCenter = packageSortingCenter;
+
         robot = new Robot(this, storageArea);
         storageEmptyBox = new StorageEmptyBox();
         storageEmptyPallet = new StorageEmptyPallet();
@@ -43,10 +48,12 @@ public class SortingSystem extends Subscriber implements ISortingSystem {
 
     @Subscribe
     public void receive(SortEvent event) {
+        if(locked) throw new SortingSystemLockedException();
         for (StorageTrack storageTrack : storageTracks) {
             while (!storageTrack.isEmpty()) {
                 Package next = storageTrack.getNext();
-                sortingTracks.get(0).sortPackage(next);
+                boolean dangerous = sortingTracks.get(0).sortPackage(next);
+                packageSortingCenter.packageScanned(next, dangerous);
             }
         }
     }
@@ -67,8 +74,8 @@ public class SortingSystem extends Subscriber implements ISortingSystem {
         return storageTracks;
     }
 
-    public boolean isLocked() {
-        return locked;
+    public boolean getLocked() {
+        return this.locked;
     }
 
     public void setLocked(boolean locked) {
@@ -78,6 +85,12 @@ public class SortingSystem extends Subscriber implements ISortingSystem {
     public void changeSearchAlgorithm(SearchAlgorithm algorithm) {
         for (SortingTrack sortingTrack : sortingTracks) {
             sortingTrack.changeSearchAlgorithm(algorithm);
+        }
+    }
+
+    public void unloadComponents() {
+        for (SortingTrack sortingTrack : sortingTracks) {
+            sortingTrack.unloadComponent();
         }
     }
 }

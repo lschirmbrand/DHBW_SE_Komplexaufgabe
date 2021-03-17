@@ -2,6 +2,7 @@ package packageSortingCenter.commands;
 
 import configuration.SearchAlgorithm;
 import control.ControlUnit;
+import packageSortingCenter.PackageSortingCenter;
 
 public class ChangeAlgorithmCommand implements ICommand {
     private SearchAlgorithm searchAlgorithm;
@@ -11,7 +12,7 @@ public class ChangeAlgorithmCommand implements ICommand {
     }
 
     @Override
-    public void execute(ControlUnit controlUnit) {
-        controlUnit.changeAlgorithm(searchAlgorithm);
+    public void execute(PackageSortingCenter sortingCenter) {
+        sortingCenter.changeAlgorithm(searchAlgorithm);
     }
 }

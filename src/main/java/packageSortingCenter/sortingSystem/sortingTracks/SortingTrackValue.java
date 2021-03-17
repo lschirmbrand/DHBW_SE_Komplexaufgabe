@@ -9,11 +9,10 @@ public class SortingTrackValue extends SortingTrack {
     }
 
     @Override
-    public void sortPackage(Package pack) {
+    public boolean sortPackage(Package pack) {
         if (pack.getPackageType() != PackageType.VALUE) {
-            nextTrack.sortPackage(pack);
-            return;
+            return nextTrack.sortPackage(pack);
         }
-        scan(pack);
+        return scan(pack);
     }
 }
