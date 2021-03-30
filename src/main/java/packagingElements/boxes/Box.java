@@ -1,43 +1,22 @@
 package packagingElements.boxes;
 
-import configuration.Configuration;
-import utillity.idGenerator.IDGenerator;
 import packagingElements.packages.Package;
 
-import java.util.ArrayList;
-
 public class Box {
-    private String id;
-    private final BoxLayer[] layers = new BoxLayer[5];
-    private final IDGenerator idGenerator = new IDGenerator();
+    private final String id;
+    private final Package[][][] packages;
 
-    public Box() {
-        generateID();
-    }
-
-    private void generateID() {
-        final int numberOfDigits = 5;
-        this.id = idGenerator.generateID(numberOfDigits);
-    }
-
-    public void fillBox(ArrayList<Package> packages) {
-        for (int i = 0; i < layers.length; i++) {
-            layers[i] = new BoxLayer(packages);
-            if (Configuration.instance.numberOfPackagesInBox > 0) {
-                packages.subList(0, Configuration.instance.numberOfPackagesInBox).clear();
-            }
-        }
+    public Box(String id, Package[][][] packages) {
+        this.id = id;
+        this.packages = packages;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getPackageIDs() {
-        StringBuilder sb = new StringBuilder();
-        for (BoxLayer layer : layers) {
-            sb.append(layer.idsToString());
-        }
-        return sb.toString();
+    public Package[][][] getPackages() {
+        return packages;
     }
+
 }

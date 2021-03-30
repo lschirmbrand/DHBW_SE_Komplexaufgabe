@@ -2,54 +2,48 @@ package vehicle.lkw;
 
 import packagingElements.pallets.Pallet;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class LKWTrailer implements ILKW {
+public class LKWTrailer {
 
-    private final Pallet[][] trailerCargo = new Pallet[2][5];
+    private Pallet[][] cargo = new Pallet[2][5];
 
-    @Override
-    public void loadTrailer(ArrayList<Pallet> pallets) {
-        for (int i = 0; i < trailerCargo.length; i++) {
-            for (int j = 0; j < trailerCargo[i].length; j++) {
-                trailerCargo[i][j] = pallets.get(0);
-                pallets.remove(0);
-            }
+    public void load(List<Pallet> pallets) {
+        for (int i = 0; i < pallets.size(); i++) {
+            int side = i % 2;
+            int pal = i / 2;
+
+            cargo[side][pal] = pallets.get(i);
         }
     }
 
-    public String[] lkwPalletsToString() {
-        String[] retString = new String[10];
-        int index = 0;
-        for (int i = 0; i < trailerCargo.length; i++) {
-            for (int h = 0; h < trailerCargo[i].length; h++) {
-                StringBuilder sb = new StringBuilder();
-                //Append Position
-                if (i == 0) {
-                    sb.append("left");
-                } else {
-                    sb.append("right");
-                }
+    public Pallet unloadNext() {
+        int side = 1;
+        int pos = 4;
 
-                //Append Level
-                sb.append(",");
-                sb.append(h);
-                sb.append(",");
-                sb.append(trailerCargo[i][h].getId());
-                retString[index] = sb.toString();
-                index++;
+        Pallet next;
+
+        while ((next = cargo[side][pos]) == null) {
+            side--;
+            if (side < 0) {
+                pos--;
+                side = 1;
+            }
+
+            if (pos < 0) {
+                return null;
             }
         }
-        return retString;
+
+        cargo[side][pos] = null;
+        return next;
     }
 
-    public void loadTrailerFromList(List<String[]> lkwContent) {
-        for (int i = 0; i < trailerCargo.length; i++) {
-            for (int j = 0; j < trailerCargo[i].length; j++) {
-                trailerCargo[i][j] = new Pallet(Integer.parseInt(lkwContent.get(0)[3]) - 1);
-                lkwContent.remove(0);
-            }
-        }
+    public Pallet[][] getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Pallet[][] cargo) {
+        this.cargo = cargo;
     }
 }

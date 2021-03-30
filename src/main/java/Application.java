@@ -1,22 +1,19 @@
-import utillity.csvTools.CSVReader;
-import employee.Administrator;
+import control.ControlUnit;
 import packageSortingCenter.PackageSortingCenter;
+import packageSortingCenter.commands.InitCommand;
+import packageSortingCenter.commands.NextCommand;
+
 
 public class Application {
     public static void main(String[] args) {
-        Administrator administrator = new Administrator();
-
-
-        CSVReader csvReader = new CSVReader();
         PackageSortingCenter packageSortingCenter = new PackageSortingCenter();
 
-        packageSortingCenter.init();
-
-        //csvReader.readLKW();
-
-
-        var packages = csvReader.readPackages();
-
-        int i = 0;
+        ControlUnit controlUnit = packageSortingCenter.getControlUnit();
+        controlUnit.executeCommand(new InitCommand());
+        controlUnit.executeCommand(new NextCommand());
+        controlUnit.executeCommand(new NextCommand());
+        controlUnit.executeCommand(new NextCommand());
+        controlUnit.executeCommand(new NextCommand());
+        controlUnit.executeCommand(new NextCommand());
     }
 }

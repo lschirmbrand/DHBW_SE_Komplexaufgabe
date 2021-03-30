@@ -1,14 +1,8 @@
 package control;
 
-import packageSortingCenter.unloadingZone.IUnloadingZone;
-import packageSortingCenter.unloadingZone.sensor.IUnloadingListener;
+import packageSortingCenter.commands.ICommand;
 
-public interface IControlUnit extends IUnloadingListener {
-    void init();
-    void next();
-    void shutdown();
-    void lock();
-    void unlock();
-    void showStatistics();
-    void changeAlgorithm();
+public interface IControlUnit {
+
+    void executeCommand(ICommand command);
 }

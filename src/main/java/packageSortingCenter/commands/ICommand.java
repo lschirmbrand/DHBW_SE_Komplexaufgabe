@@ -1,5 +1,7 @@
 package packageSortingCenter.commands;
 
+import control.ControlUnit;
+
 public interface ICommand {
-    void execute();
+    void execute(ControlUnit controlUnit);
 }

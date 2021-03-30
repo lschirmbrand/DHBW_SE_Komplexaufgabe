@@ -16,7 +16,7 @@ public class PackageFactory {
     private static final int contWidth = Configuration.instance.packageWidth;
     private static final int contLength = Configuration.instance.packageLength;
 
-    public static Package buildPackage() {
+    public static Package build() {
         // id
         String id = idGenerator.generateID(6);
 
@@ -24,7 +24,7 @@ public class PackageFactory {
         List<Character> pool = IntStream.range(97, 123).mapToObj(value -> (char) value).collect(Collectors.toList());
         pool.addAll(List.of('.', ':', '-', '!'));
 
-        String [][] content = new String[contHeight][contWidth];
+        String[][] content = new String[contHeight][contWidth];
         for (int h = 0; h < contHeight; h++) {
             for (int w = 0; w < contWidth; w++) {
                 content[h][w] = "";
@@ -39,13 +39,13 @@ public class PackageFactory {
 
         // package type
         double rand = ThreadLocalRandom.current().nextDouble();
-        Package.PackageTypeE packageType;
+        PackageType packageType;
         if (rand < 0.8) {
-            packageType = Package.PackageTypeE.NORMAL;
+            packageType = PackageType.NORMAL;
         } else if (rand >= 0.8 && rand < 0.95) {
-            packageType = Package.PackageTypeE.EXPRESS;
+            packageType = PackageType.EXPRESS;
         } else {
-            packageType = Package.PackageTypeE.VALUE;
+            packageType = PackageType.VALUE;
         }
 
         // weight

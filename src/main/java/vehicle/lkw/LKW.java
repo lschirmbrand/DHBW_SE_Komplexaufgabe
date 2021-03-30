@@ -1,40 +1,34 @@
 package vehicle.lkw;
 
-import utillity.idGenerator.IDGenerator;
 import packagingElements.pallets.Pallet;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LKW {
 
-    LKWTrailer trailer;
+    private final LKWTrailer trailer;
+    private final String id;
 
-    private String id;
-
-    public LKW() {
-        IDGenerator idGenerator = new IDGenerator();
-        this.id = idGenerator.generateID(4);
+    public LKW(String id) {
+        this.id = id;
         trailer = new LKWTrailer();
     }
 
-    public void fillTrailer(ArrayList<Pallet> pallets) {
-        trailer.loadTrailer(pallets);
+    public void loadTrailer(List<Pallet> pallets) {
+        trailer.load(pallets);
+    }
+
+    public void loadTrailer(Pallet[][] pallets) {
+        trailer.setCargo(pallets);
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public LKWTrailer getTrailer() {
         return trailer;
     }
 
-    public void fillTrailerFromList(List<String[]> lkwContent) {
-        trailer.loadTrailerFromList(lkwContent);
-    }
 }
