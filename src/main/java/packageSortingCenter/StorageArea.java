@@ -5,7 +5,7 @@ import packagingElements.pallets.Pallet;
 import java.util.Arrays;
 
 public class StorageArea {
-    private Pallet[][] positions = new Pallet[5][2];
+    private final Pallet[][] positions = new Pallet[5][2];
 
     public StorageArea() {
         for (Pallet[] position : positions) {

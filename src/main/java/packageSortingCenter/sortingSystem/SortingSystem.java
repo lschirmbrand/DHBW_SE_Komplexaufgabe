@@ -7,7 +7,10 @@ import events.sorting_system.SortEvent;
 import packageSortingCenter.PackageSortingCenter;
 import packageSortingCenter.StorageArea;
 import packageSortingCenter.sortingSystem.roboter.Robot;
-import packageSortingCenter.sortingSystem.sortingTracks.*;
+import packageSortingCenter.sortingSystem.sortingTracks.SortingTrack;
+import packageSortingCenter.sortingSystem.sortingTracks.SortingTrackExpress;
+import packageSortingCenter.sortingSystem.sortingTracks.SortingTrackNormal;
+import packageSortingCenter.sortingSystem.sortingTracks.SortingTrackValue;
 import packageSortingCenter.sortingSystem.storage.StorageEmptyBox;
 import packageSortingCenter.sortingSystem.storage.StorageEmptyPallet;
 import packageSortingCenter.sortingSystem.storage.StorageTrack;
@@ -19,15 +22,13 @@ import java.util.List;
 
 
 public class SortingSystem extends Subscriber implements ISortingSystem {
-    PackageSortingCenter packageSortingCenter;
-
-    Robot robot;
-    StorageEmptyBox storageEmptyBox;
-    StorageEmptyPallet storageEmptyPallet;
-    List<StorageTrack> storageTracks;
-    List<SortingTrack> sortingTracks;
-
-    boolean locked;
+    private final Robot robot;
+    private final StorageEmptyBox storageEmptyBox;
+    private final StorageEmptyPallet storageEmptyPallet;
+    private final List<StorageTrack> storageTracks;
+    private final List<SortingTrack> sortingTracks;
+    private final PackageSortingCenter packageSortingCenter;
+    private boolean locked;
 
     public SortingSystem(PackageSortingCenter packageSortingCenter, StorageArea storageArea, ITrackLevelListener listener) {
         this.packageSortingCenter = packageSortingCenter;
@@ -48,7 +49,7 @@ public class SortingSystem extends Subscriber implements ISortingSystem {
 
     @Subscribe
     public void receive(SortEvent event) {
-        if(locked) throw new SortingSystemLockedException();
+        if (locked) throw new SortingSystemLockedException();
         for (StorageTrack storageTrack : storageTracks) {
             while (!storageTrack.isEmpty()) {
                 Package next = storageTrack.getNext();

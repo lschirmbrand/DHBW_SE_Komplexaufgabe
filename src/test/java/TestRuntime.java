@@ -6,7 +6,7 @@ public class TestRuntime {
 
     @Test
     @DisplayName("Test Something")
-    public void testSomething(){
+    public void testSomething() {
         PackageSortingCenter packageSortingCenter = new PackageSortingCenter();
     }
 }

@@ -11,6 +11,7 @@ import packageSortingCenter.waitingZone.WaitingZone;
 import packagingElements.packages.Package;
 import packagingElements.packages.PackageType;
 import utillity.csvTools.CSVReader;
+import utillity.csvTools.ICSVReader;
 import vehicle.autonomous_vehicle.AutonomousVehicle;
 import vehicle.lkw.LKW;
 
@@ -22,8 +23,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 
-public class PackageSortingCenter implements IPackageSortingCenter {
-    private final CSVReader csvReader;
+public class PackageSortingCenter {
+    private final ICSVReader csvReader;
 
     private final ControlUnit controlUnit;
     private final SortingSystem sortingSystem;
@@ -31,10 +32,9 @@ public class PackageSortingCenter implements IPackageSortingCenter {
     private final ParkingZone parkingZone;
     private final WaitingZone waitingZone;
     private final StorageArea storageArea;
-
+    private final EnumMap<PackageType, Integer> scannedPackages = new EnumMap<>(PackageType.class);
     private int numberDispatchedLKW = 0;
     private int numberDangerousPackages = 0;
-    private final EnumMap<PackageType, Integer> scannedPackages = new EnumMap<>(PackageType.class);
 
     public PackageSortingCenter() {
         csvReader = new CSVReader();
@@ -65,12 +65,10 @@ public class PackageSortingCenter implements IPackageSortingCenter {
         return controlUnit;
     }
 
-    @Override
     public void init() {
         csvReader.readLKW().forEach(waitingZone::add);
     }
 
-    @Override
     public void next() {
         LKW lkw = waitingZone.getNext();
         int unloadingIndex = ThreadLocalRandom.current().nextInt(unloadingZones.size());
@@ -78,7 +76,6 @@ public class PackageSortingCenter implements IPackageSortingCenter {
         numberDispatchedLKW++;
     }
 
-    @Override
     public void shutdown() {
         for (UnloadingZone zone : unloadingZones) {
             zone.deactivateSensor();
@@ -86,17 +83,14 @@ public class PackageSortingCenter implements IPackageSortingCenter {
         sortingSystem.unloadComponents();
     }
 
-    @Override
     public void lock() {
         sortingSystem.setLocked(true);
     }
 
-    @Override
     public void unlock() {
         sortingSystem.setLocked(false);
     }
 
-    @Override
     public void showStatistics() {
         Report report = new Report.Builder()
                 .date(new Date())
@@ -111,7 +105,6 @@ public class PackageSortingCenter implements IPackageSortingCenter {
         }
     }
 
-    @Override
     public void changeAlgorithm(SearchAlgorithm algorithm) {
         sortingSystem.changeSearchAlgorithm(algorithm);
     }

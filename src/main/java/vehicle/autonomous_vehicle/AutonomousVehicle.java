@@ -3,7 +3,7 @@ package vehicle.autonomous_vehicle;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import events.Subscriber;
-import events.UnloadingFinishedEvent;
+import events.autonomous_vehicle.UnloadingFinishedEvent;
 import events.autonomous_vehicle.UnloadEvent;
 import packageSortingCenter.PackageSortingCenter;
 import packageSortingCenter.StorageArea;

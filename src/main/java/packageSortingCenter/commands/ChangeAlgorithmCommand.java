@@ -1,11 +1,10 @@
 package packageSortingCenter.commands;
 
 import configuration.SearchAlgorithm;
-import control.ControlUnit;
 import packageSortingCenter.PackageSortingCenter;
 
 public class ChangeAlgorithmCommand implements ICommand {
-    private SearchAlgorithm searchAlgorithm;
+    private final SearchAlgorithm searchAlgorithm;
 
     public ChangeAlgorithmCommand(SearchAlgorithm searchAlgorithm) {
         this.searchAlgorithm = searchAlgorithm;

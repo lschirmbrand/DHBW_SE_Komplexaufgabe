@@ -8,8 +8,8 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 public class StorageTrack {
-    Queue<Package> packages;
-    LevelSensor sensor;
+    private final Queue<Package> packages;
+    private final LevelSensor sensor;
 
     public StorageTrack(ITrackLevelListener listener) {
         packages = new ArrayDeque<>();

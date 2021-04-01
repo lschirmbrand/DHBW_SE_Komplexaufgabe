@@ -5,7 +5,7 @@ import configuration.SearchAlgorithm;
 import packagingElements.packages.Package;
 
 public abstract class SortingTrack {
-    protected SortingTrack nextTrack;
+    protected final SortingTrack nextTrack;
     private final Scanner scanner;
 
     public SortingTrack(SortingTrack nextTrack) {

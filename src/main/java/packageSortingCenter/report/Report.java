@@ -11,10 +11,10 @@ import java.util.Map;
 
 public class Report {
 
-    private Date date;
-    private int dispatchedLKWs;
-    private EnumMap<PackageType, Integer> numberPackagesGrouped;
-    private int numberDangerousPackages;
+    private final Date date;
+    private final int dispatchedLKWs;
+    private final EnumMap<PackageType, Integer> numberPackagesGrouped;
+    private final int numberDangerousPackages;
 
     private Report(Report.Builder builder) {
         this.dispatchedLKWs = builder.dispatchedLKWs;
@@ -51,7 +51,6 @@ public class Report {
         private int dispatchedLKWs;
         private EnumMap<PackageType, Integer> numberPackagesGrouped;
         private int numberDangerousPackages;
-
 
 
         public Builder date(Date date) {

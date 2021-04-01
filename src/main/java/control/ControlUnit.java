@@ -1,11 +1,10 @@
 package control;
 
 import com.google.common.eventbus.EventBus;
-import events.Subscriber;
 import com.google.common.eventbus.Subscribe;
 import configuration.Configuration;
-import configuration.SearchAlgorithm;
-import events.UnloadingFinishedEvent;
+import events.Subscriber;
+import events.autonomous_vehicle.UnloadingFinishedEvent;
 import events.autonomous_vehicle.UnloadEvent;
 import events.robot.StartEmptyingEvent;
 import events.sorting_system.SortEvent;
@@ -56,7 +55,7 @@ public class ControlUnit extends Subscriber implements IControlUnit, IUnloadingL
     @Override
     public void trackFull() {
         filledStorageTracks++;
-        if(filledStorageTracks == 8) {
+        if (filledStorageTracks == 8) {
             eventBus.post(new SortEvent());
             filledStorageTracks = 0;
         }

@@ -5,7 +5,7 @@ import packagingElements.pallets.Pallet;
 import java.util.Stack;
 
 public class StorageEmptyPallet {
-    Stack<Pallet> emptyPallets;
+    private final Stack<Pallet> emptyPallets;
 
     public StorageEmptyPallet() {
         emptyPallets = new Stack<>();

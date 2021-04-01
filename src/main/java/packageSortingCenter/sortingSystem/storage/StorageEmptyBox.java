@@ -5,7 +5,7 @@ import packagingElements.boxes.Box;
 import java.util.Stack;
 
 public class StorageEmptyBox {
-    Stack<Box> emptyBoxes;
+    private final Stack<Box> emptyBoxes;
 
     public StorageEmptyBox() {
         emptyBoxes = new Stack<>();

@@ -1,15 +1,13 @@
 package packagingElements.packages;
 
 
-import java.util.concurrent.ThreadLocalRandom;
-
 public class Package {
 
     private final String id;
-    private String[][] content;
     private final int zipCode;
     private final PackageType packageType;
     private final double weight;
+    private String[][] content;
 
 
     public Package(String id, String[][] content, int zipCode, PackageType packageType, double weight) {
@@ -26,6 +24,10 @@ public class Package {
 
     public String[][] getContent() {
         return content;
+    }
+
+    public void setContent(String[][] content) {
+        this.content = content;
     }
 
     public String getContentToString() {
@@ -53,9 +55,5 @@ public class Package {
 
     public double getWeight() {
         return weight;
-    }
-
-    public void setContent(String[][] content) {
-        this.content = content;
     }
 }

@@ -4,8 +4,6 @@ import packagingElements.packages.Package;
 import packagingElements.packages.PackageType;
 
 public class SortingTrackNormal extends SortingTrack {
-
-
     public SortingTrackNormal(SortingTrack nextTrack) {
         super(nextTrack);
     }
