@@ -1,10 +1,11 @@
 package packageSortingCenter.commands;
 
 import control.ControlUnit;
+import packageSortingCenter.PackageSortingCenter;
 
 public class ShowStatisticsCommand implements ICommand {
     @Override
-    public void execute(ControlUnit controlUnit) {
-        controlUnit.showStatistics();
+    public void execute(PackageSortingCenter sortingCenter) {
+        sortingCenter.showStatistics();
     }
 }

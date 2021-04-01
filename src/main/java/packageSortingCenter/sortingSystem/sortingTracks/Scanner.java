@@ -5,10 +5,10 @@ import packagingElements.packages.Package;
 
 import java.lang.reflect.Method;
 
-public class ScannerExplosives {
+public class Scanner {
     private Object searchAlgorithmPort;
 
-    public ScannerExplosives(SearchAlgorithm algorithm) {
+    public Scanner(SearchAlgorithm algorithm) {
         this.searchAlgorithmPort = SearchAlgorithmFactory.build(algorithm);
     }
 
@@ -32,8 +32,11 @@ public class ScannerExplosives {
         return false;
     }
 
-
     public void setAlgorithm(SearchAlgorithm algorithm) {
         this.searchAlgorithmPort = SearchAlgorithmFactory.build(algorithm);
+    }
+
+    public void unloadComponent() {
+        searchAlgorithmPort = null;
     }
 }
