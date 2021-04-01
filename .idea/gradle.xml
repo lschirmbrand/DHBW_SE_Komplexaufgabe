@@ -5,9 +5,30 @@
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../gradle/gradle-6.8.2" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/components/boyer_moore" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../gradle/gradle-6.8.2" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/components/boyer_moore" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/components/rabin_karp" />
+        <option name="gradleHome" value="$PROJECT_DIR$/../../../../gradle/gradle-6.8.2" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/components/rabin_karp" />
           </set>
         </option>
       </GradleProjectSettings>
