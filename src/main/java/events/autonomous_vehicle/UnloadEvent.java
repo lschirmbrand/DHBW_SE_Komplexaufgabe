@@ -1,8 +1,8 @@
 package events.autonomous_vehicle;
 
 public class UnloadEvent {
-    int vehicleID;
-    int zoneID;
+    private final int vehicleID;
+    private final int zoneID;
 
     public UnloadEvent(int vehicleID, int zoneID) {
         this.vehicleID = vehicleID;

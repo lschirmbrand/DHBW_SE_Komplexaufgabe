@@ -15,8 +15,8 @@ import packagingElements.pallets.Pallet;
 import java.util.List;
 
 public class Robot extends Subscriber {
-    SortingSystem sortingSystem;
-    StorageArea storageArea;
+    private final SortingSystem sortingSystem;
+    private final StorageArea storageArea;
 
     public Robot(SortingSystem sortingSystem, StorageArea storageArea) {
         this.sortingSystem = sortingSystem;
@@ -55,7 +55,5 @@ public class Robot extends Subscriber {
             }
             storageEmptyPallet.store(pallet);
         }
-
-        return;
     }
 }

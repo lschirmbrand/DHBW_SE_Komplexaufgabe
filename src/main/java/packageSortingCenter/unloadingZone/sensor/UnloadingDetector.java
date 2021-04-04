@@ -7,7 +7,7 @@ public class UnloadingDetector {
 
     private final List<IUnloadingListener> listenerList;
     private boolean activated = true;
-    private int zoneID;
+    private final int zoneID;
 
     public UnloadingDetector(int zoneID) {
         this.zoneID = zoneID;

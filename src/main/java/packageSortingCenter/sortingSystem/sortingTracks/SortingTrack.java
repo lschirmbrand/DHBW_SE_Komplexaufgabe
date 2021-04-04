@@ -5,15 +5,15 @@ import configuration.SearchAlgorithm;
 import packagingElements.packages.Package;
 
 public abstract class SortingTrack {
-    protected SortingTrack nextTrack;
-    private ScannerExplosives scanner;
+    protected final SortingTrack nextTrack;
+    private final Scanner scanner;
 
     public SortingTrack(SortingTrack nextTrack) {
         this.nextTrack = nextTrack;
-        this.scanner = new ScannerExplosives(SearchAlgorithm.BOYER_MOORE);
+        this.scanner = new Scanner(SearchAlgorithm.BOYER_MOORE);
     }
 
-    public abstract void sortPackage(Package pack);
+    public abstract boolean sortPackage(Package pack);
 
     protected boolean scan(Package pack) {
         boolean res = scanner.scanForExplosive(pack);
@@ -25,6 +25,10 @@ public abstract class SortingTrack {
 
     public void changeSearchAlgorithm(SearchAlgorithm algorithm) {
         this.scanner.setAlgorithm(algorithm);
+    }
+
+    public void unloadComponent() {
+        scanner.unloadComponent();
     }
 }
 

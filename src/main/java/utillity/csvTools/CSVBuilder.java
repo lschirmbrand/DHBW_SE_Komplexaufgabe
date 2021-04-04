@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CSVBuilder {
-    public static void main(String[] args) {
-        CSVWriter csvWriter = new CSVWriter();
+    public static void main() {
+        ICSVWriter csvWriter = new CSVWriter();
 
         // create packages
         List<Package> packages = new ArrayList<>();

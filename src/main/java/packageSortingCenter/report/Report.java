@@ -7,19 +7,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 import java.util.EnumMap;
+import java.util.Map;
 
 public class Report {
 
-    private Date date;
-    private int dispatchedLKWs;
-    private String[] numberPackagesGrouped;
-    private int numberDangerousPackages;
+    private final Date date;
+    private final int dispatchedLKWs;
+    private final EnumMap<PackageType, Integer> numberPackagesGrouped;
+    private final int numberDangerousPackages;
 
-    private Report(Builder builder) {
-        date = builder.date;
-        dispatchedLKWs = builder.dispatchedLKWs;
-        numberPackagesGrouped = builder.numberPackagesGrouped;
-        numberDangerousPackages = builder.numberDangerousPackages;
+    private Report(Report.Builder builder) {
+        this.dispatchedLKWs = builder.dispatchedLKWs;
+        this.date = builder.date;
+        this.numberPackagesGrouped = builder.numberPackagesGrouped;
+        this.numberDangerousPackages = builder.numberDangerousPackages;
     }
 
     public void writeToLog() throws IOException {
@@ -28,10 +29,14 @@ public class Report {
         sb.append(date.toString());
         sb.append("\nNumber of dispatched LKW: ");
         sb.append(dispatchedLKWs);
-        sb.append("Grouped Categories & Amount:\n");
-        for (String s : numberPackagesGrouped) {
-            sb.append(s);
+        sb.append("\nGrouped Categories & Amount:\n");
+
+        for (Map.Entry<PackageType, Integer> entry : numberPackagesGrouped.entrySet()) {
+            PackageType packageType = entry.getKey();
+            Integer number = entry.getValue();
+            sb.append(packageType).append(": ").append(number).append("\n");
         }
+
         sb.append("Number of dangerous Packages: ");
         sb.append(numberDangerousPackages);
         FileWriter fileWriter = new FileWriter("report.txt");
@@ -40,56 +45,31 @@ public class Report {
         printWriter.close();
     }
 
-    public static class Builder {
 
+    public static final class Builder {
         private Date date;
         private int dispatchedLKWs;
-        private String[] numberPackagesGrouped;
+        private EnumMap<PackageType, Integer> numberPackagesGrouped;
         private int numberDangerousPackages;
 
 
-        public Builder date() {
-            this.date = new Date();
+        public Builder date(Date date) {
+            this.date = date;
             return this;
         }
 
-        public Builder dispatchedLKWs(int size) {
-            this.dispatchedLKWs = size;
+        public Builder dispatchedLKWs(int dispatchedLKWs) {
+            this.dispatchedLKWs = dispatchedLKWs;
             return this;
         }
 
-        public Builder setNumberPackagesGrouped(EnumMap<PackageType, Integer> packageType) {
-            String[] numberPackagesGrouped = new String[3];
-            StringBuilder sb = new StringBuilder();
-            sb.append(PackageType.NORMAL.toString());
-            sb.append(": ");
-            sb.append(packageType.get(PackageType.NORMAL));
-            sb.append(";\n");
-            numberPackagesGrouped[0] = sb.toString();
-
-            //clear stringbuilder
-            sb.setLength(0);
-
-            sb.append(PackageType.EXPRESS.toString());
-            sb.append(": ");
-            sb.append(packageType.get(PackageType.EXPRESS));
-            sb.append(";\n");
-            numberPackagesGrouped[1] = sb.toString();
-
-            //clear stringbuilder
-            sb.setLength(0);
-
-            sb.append(PackageType.VALUE.toString());
-            sb.append(": ");
-            sb.append(packageType.get(PackageType.VALUE));
-            sb.append(";\n");
-            numberPackagesGrouped[2] = sb.toString();
-
+        public Builder numberPackagesGrouped(EnumMap<PackageType, Integer> numberPackagesGrouped) {
+            this.numberPackagesGrouped = numberPackagesGrouped;
             return this;
         }
 
-        public Builder setNumberDangerousPackages(int amount) {
-            this.numberDangerousPackages = amount;
+        public Builder numberDangerousPackages(int numberDangerousPackages) {
+            this.numberDangerousPackages = numberDangerousPackages;
             return this;
         }
 

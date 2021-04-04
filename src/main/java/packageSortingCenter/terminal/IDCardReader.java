@@ -9,7 +9,7 @@ import utillity.encryption.DESEncryption;
 
 public class IDCardReader {
 
-    private Terminal terminal;
+    private final Terminal terminal;
 
     private int pinTrialsLeft = 0;
     private int superPinTrialsLeft = 0;
@@ -36,6 +36,7 @@ public class IDCardReader {
             case DES -> DESEncryption.decrypt(card.getMagnetStripe(), key);
         };
 
+        assert plainStripe != null;
         String[] subStrings = plainStripe.split(";");
 
         roleToAuthenticate = switch (subStrings[2]) {

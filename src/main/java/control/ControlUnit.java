@@ -1,12 +1,10 @@
 package control;
 
 import com.google.common.eventbus.EventBus;
-import events.Subscriber;
 import com.google.common.eventbus.Subscribe;
 import configuration.Configuration;
-import configuration.SearchAlgorithm;
 import events.Subscriber;
-import events.UnloadingFinishedEvent;
+import events.autonomous_vehicle.UnloadingFinishedEvent;
 import events.autonomous_vehicle.UnloadEvent;
 import events.robot.StartEmptyingEvent;
 import events.sorting_system.SortEvent;
@@ -37,35 +35,7 @@ public class ControlUnit extends Subscriber implements IControlUnit, IUnloadingL
     }
 
     public void executeCommand(ICommand command) {
-        command.execute(this);
-    }
-
-    public void init() {
-        packageSortingCenter.init();
-    }
-
-    public void next() {
-        packageSortingCenter.next();
-    }
-
-    public void shutdown() {
-        packageSortingCenter.shutdown();
-    }
-
-    public void lock() {
-        packageSortingCenter.lock();
-    }
-
-    public void unlock() {
-        packageSortingCenter.unlock();
-    }
-
-    public void showStatistics() {
-        packageSortingCenter.showStatistics();
-    }
-
-    public void changeAlgorithm(SearchAlgorithm searchAlgorithm) {
-        packageSortingCenter.changeAlgorithm(searchAlgorithm);
+        command.execute(packageSortingCenter);
     }
 
     public void sensorTriggered(int zoneID) {
@@ -85,7 +55,7 @@ public class ControlUnit extends Subscriber implements IControlUnit, IUnloadingL
     @Override
     public void trackFull() {
         filledStorageTracks++;
-        if(filledStorageTracks == 8) {
+        if (filledStorageTracks == 8) {
             eventBus.post(new SortEvent());
             filledStorageTracks = 0;
         }
