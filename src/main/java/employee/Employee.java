@@ -7,15 +7,12 @@ public abstract class Employee {
     protected String name;
 
     protected IDCard idCard;
-    protected String pin;
 
     protected EmployeeRole role;
 
-    public Employee(int id, String name, IDCard idCard, String pin, EmployeeRole role) {
+    public Employee(int id, String name, EmployeeRole role) {
         this.id = id;
         this.name = name;
-        this.idCard = idCard;
-        this.pin = pin;
         this.role = role;
     }
 
@@ -29,6 +26,10 @@ public abstract class Employee {
 
     public IDCard getIdCard() {
         return idCard;
+    }
+
+    public void setIdCard(IDCard idCard) {
+        this.idCard = idCard;
     }
 
     public EmployeeRole getRole() {

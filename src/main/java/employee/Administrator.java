@@ -5,8 +5,8 @@ import employee.idCard.IDCard;
 public class Administrator extends Employee {
     private final Profile Profile;
 
-    public Administrator(int id, String name, IDCard idCard, String pin, Administrator.Profile profile) {
-        super(id, name, idCard, pin, EmployeeRole.ADMINISTRATOR);
+    public Administrator(int id, String name, Administrator.Profile profile) {
+        super(id, name, EmployeeRole.ADMINISTRATOR);
         Profile = profile;
     }
 
