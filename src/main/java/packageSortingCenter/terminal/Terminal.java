@@ -54,7 +54,7 @@ public class Terminal {
 
     public void showStatistics() {
         new ControlUnitProxy(authenticatedRole, packageSortingCenter.getControlUnit())
-                .executeCommand(new ShutdownCommand());
+                .executeCommand(new ShowStatisticsCommand());
     }
 
     public void changeSearchAlgorithm(SearchAlgorithm searchAlgorithm) {
@@ -62,4 +62,7 @@ public class Terminal {
                 .executeCommand(new ChangeAlgorithmCommand(searchAlgorithm));
     }
 
+    public EmployeeRole getAuthenticatedRole() {
+        return authenticatedRole;
+    }
 }
