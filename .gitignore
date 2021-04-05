@@ -31,3 +31,4 @@ base_package.csv
 
 .gradle
 build
+/report.txt
