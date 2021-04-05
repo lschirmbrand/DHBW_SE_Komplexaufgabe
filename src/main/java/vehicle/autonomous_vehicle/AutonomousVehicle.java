@@ -9,6 +9,7 @@ import packageSortingCenter.PackageSortingCenter;
 import packageSortingCenter.StorageArea;
 import packageSortingCenter.parkingZoneAutonom.ParkingZone;
 import packagingElements.pallets.Pallet;
+import vehicle.lkw.LKW;
 import vehicle.lkw.LKWTrailer;
 
 public class AutonomousVehicle extends Subscriber {
@@ -27,12 +28,18 @@ public class AutonomousVehicle extends Subscriber {
         if (event.getVehicleID() != id) {
             return;
         }
+        LKW lkw = sortingCenter.getUnloadingZones().get(event.getZoneID()).getParkedLKW();
+        unload(lkw);
+        eventBus.post(new UnloadingFinishedEvent());
+    }
 
+    public void unload(LKW lkw) {
         ParkingZone parkingZone = sortingCenter.getParkingZone();
-        LKWTrailer trailer = sortingCenter.getUnloadingZones().get(event.getZoneID()).getParkedLKW().getTrailer();
+        parkingZone.leave(this);
+
+        LKWTrailer trailer = lkw.getTrailer();
         StorageArea storageArea = sortingCenter.getStorageArea();
 
-        parkingZone.leave(this);
 
         Pallet next;
         while ((next = trailer.unloadNext()) != null) {
@@ -40,6 +47,6 @@ public class AutonomousVehicle extends Subscriber {
         }
 
         parkingZone.addVehicle(this);
-        eventBus.post(new UnloadingFinishedEvent());
     }
+
 }

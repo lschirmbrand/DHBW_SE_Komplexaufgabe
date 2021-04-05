@@ -20,4 +20,11 @@ public class ParkingZone {
         autonomousVehicles.remove(vehicle);
     }
 
+    public List<AutonomousVehicle> getAutonomousVehicles() {
+        return autonomousVehicles;
+    }
+
+    public int getCount() {
+        return autonomousVehicles.size();
+    }
 }

@@ -47,4 +47,15 @@ public class StorageArea {
     public Pallet[][] getPositions() {
         return positions;
     }
+
+    public int getPalletCount() {
+        int count = 0;
+        for (Pallet[] position : positions) {
+            for (Pallet pallet : position) {
+                if (pallet != null)
+                    count++;
+            }
+        }
+        return count;
+    }
 }

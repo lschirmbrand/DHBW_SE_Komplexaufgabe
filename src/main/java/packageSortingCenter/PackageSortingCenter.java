@@ -6,6 +6,7 @@ import control.ControlUnit;
 import packageSortingCenter.parkingZoneAutonom.ParkingZone;
 import packageSortingCenter.report.Report;
 import packageSortingCenter.sortingSystem.SortingSystem;
+import packageSortingCenter.terminal.Terminal;
 import packageSortingCenter.unloadingZone.UnloadingZone;
 import packageSortingCenter.waitingZone.WaitingZone;
 import packagingElements.packages.Package;
@@ -27,6 +28,7 @@ public class PackageSortingCenter {
     private final ICSVReader csvReader;
 
     private final ControlUnit controlUnit;
+    private final Terminal terminal;
     private final SortingSystem sortingSystem;
     private final List<UnloadingZone> unloadingZones;
     private final ParkingZone parkingZone;
@@ -39,6 +41,7 @@ public class PackageSortingCenter {
     public PackageSortingCenter() {
         csvReader = new CSVReader();
         controlUnit = new ControlUnit(this);
+        terminal = new Terminal(this);
         unloadingZones = new ArrayList<>();
         for (int i = 0; i < Configuration.instance.numberOfUnloadingZones; i++) {
             unloadingZones.add(new UnloadingZone(controlUnit, i));
@@ -63,6 +66,10 @@ public class PackageSortingCenter {
 
     public ControlUnit getControlUnit() {
         return controlUnit;
+    }
+
+    public Terminal getTerminal() {
+        return terminal;
     }
 
     public void init() {
@@ -128,5 +135,13 @@ public class PackageSortingCenter {
 
     public StorageArea getStorageArea() {
         return storageArea;
+    }
+
+    public SortingSystem getSortingSystem() {
+        return sortingSystem;
+    }
+
+    public WaitingZone getWaitingZone() {
+        return waitingZone;
     }
 }
