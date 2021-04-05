@@ -15,4 +15,8 @@ public class WaitingZone {
     public LKW getNext() {
         return lkwQueue.poll();
     }
+
+    public boolean isEmpty() {
+        return lkwQueue.isEmpty();
+    }
 }

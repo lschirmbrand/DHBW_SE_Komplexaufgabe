@@ -6,6 +6,7 @@ import control.ControlUnit;
 import packageSortingCenter.parkingZoneAutonom.ParkingZone;
 import packageSortingCenter.report.Report;
 import packageSortingCenter.sortingSystem.SortingSystem;
+import packageSortingCenter.terminal.Terminal;
 import packageSortingCenter.unloadingZone.UnloadingZone;
 import packageSortingCenter.waitingZone.WaitingZone;
 import packagingElements.packages.Package;
@@ -32,6 +33,7 @@ public class PackageSortingCenter {
     private final ParkingZone parkingZone;
     private final WaitingZone waitingZone;
     private final StorageArea storageArea;
+    private final Terminal terminal;
     private final EnumMap<PackageType, Integer> scannedPackages = new EnumMap<>(PackageType.class);
     private int numberDispatchedLKW = 0;
     private int numberDangerousPackages = 0;
@@ -52,6 +54,7 @@ public class PackageSortingCenter {
 
         waitingZone = new WaitingZone();
         storageArea = new StorageArea();
+        terminal = new Terminal(this);
         sortingSystem = new SortingSystem(this, storageArea, controlUnit);
         controlUnit.addEventSubscriber(sortingSystem.getRobot());
         controlUnit.addEventSubscriber(sortingSystem);
@@ -128,5 +131,25 @@ public class PackageSortingCenter {
 
     public StorageArea getStorageArea() {
         return storageArea;
+    }
+
+    public Terminal getTerminal() {
+        return terminal;
+    }
+
+    public int getScannedPackages() {
+        return scannedPackages.values().stream().reduce(Integer::sum).orElse(0);
+    }
+
+    public int getNumberDispatchedLKW() {
+        return numberDispatchedLKW;
+    }
+
+    public int getNumberDangerousPackages() {
+        return numberDangerousPackages;
+    }
+
+    public WaitingZone getWaitingZone() {
+        return waitingZone;
     }
 }
