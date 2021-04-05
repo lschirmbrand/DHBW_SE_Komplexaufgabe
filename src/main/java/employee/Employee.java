@@ -1,22 +1,21 @@
 package employee;
 
 import employee.idCard.IDCard;
+import employee.idCard.IDCardFactory;
 
 public abstract class Employee {
+    private static int nextID = 0;
+
     protected int id;
     protected String name;
-
     protected IDCard idCard;
-    protected String pin;
-
     protected EmployeeRole role;
 
-    public Employee(int id, String name, IDCard idCard, String pin, EmployeeRole role) {
-        this.id = id;
+    public Employee(String name, String pin, EmployeeRole role) {
+        this.id = nextID++;
         this.name = name;
-        this.idCard = idCard;
-        this.pin = pin;
         this.role = role;
+        this.idCard = IDCardFactory.create(this, pin);
     }
 
     public int getId() {
