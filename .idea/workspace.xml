@@ -4,64 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46dfd82f-b0eb-4ccb-8f55-9028f023b47c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/diagram/SE_Komplexaufgabe.vpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/report.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/control/UnauthorizedException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/SortingSystemLockedException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/TestCSVUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/TestImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/DHBW_SE_Komplexaufgabe.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="67797a71-623f-43d6-a674-f5a538cdfc95" name="Default Changelist" comment="project files">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/boyer_moore/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/boyer_moore/.idea/modules/implementation.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/rabin_karp/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/rabin_karp/.idea/modules/implementation.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/rabin_karp/src/main/java/RabinKarp.java" beforeDir="false" afterPath="$PROJECT_DIR$/components/rabin_karp/src/main/java/RabinKarp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/control/ControlUnit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/control/ControlUnit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/control/ControlUnitProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/control/ControlUnitProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/employee/Supervisor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/employee/Supervisor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/events/UnloadingFinishedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/events/autonomous_vehicle/UnloadingFinishedEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/events/autonomous_vehicle/UnloadEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/events/autonomous_vehicle/UnloadEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/IPackageSortingCenter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/PackageSortingCenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/PackageSortingCenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/StorageArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/StorageArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/commands/ChangeAlgorithmCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/commands/ChangeAlgorithmCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/commands/ICommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/commands/ICommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/commands/InitCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/commands/InitCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/commands/LockCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/commands/LockCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/commands/NextCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/commands/NextCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/commands/ShowStatisticsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/commands/ShowStatisticsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/commands/ShutdownCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/commands/ShutdownCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/commands/UnlockCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/commands/UnlockCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/report/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/report/Report.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/SortingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/SortingSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/roboter/IRobot.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/roboter/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/roboter/Robot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/roboter/RobotOff.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/roboter/RobotOn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/roboter/RobotStart.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/sortingTracks/ScannerExplosives.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/sortingTracks/Scanner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/sortingTracks/SearchAlgorithmFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/sortingTracks/SearchAlgorithmFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/sortingTracks/SortingTrack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/sortingTracks/SortingTrack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/sortingTracks/SortingTrackExpress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/sortingTracks/SortingTrackExpress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/sortingTracks/SortingTrackNormal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/sortingTracks/SortingTrackNormal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/sortingTracks/SortingTrackValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/sortingTracks/SortingTrackValue.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/storage/StorageEmptyBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/storage/StorageEmptyBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/storage/StorageEmptyPallet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/storage/StorageEmptyPallet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/storage/StorageTrack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/sortingSystem/storage/StorageTrack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/terminal/IDCardReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/terminal/IDCardReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/unloadingZone/UnloadingZone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/unloadingZone/UnloadingZone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packageSortingCenter/unloadingZone/sensor/UnloadingDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packageSortingCenter/unloadingZone/sensor/UnloadingDetector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packagingElements/packages/Package.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/packagingElements/packages/Package.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/packagingElements/pallets/PosCapacity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utillity/csvTools/CSVBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utillity/csvTools/CSVBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/vehicle/autonomous_vehicle/AutonomousVehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/vehicle/autonomous_vehicle/AutonomousVehicle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TestImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestImplementation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +27,43 @@
     <projectState path="$PROJECT_DIR$/components/rabin_karp">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/components/boyer_moore">
+          <activation />
+        </task>
+        <task path="$PROJECT_DIR$/components/rabin_karp">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DHBW_SE_Komplexaufgabe" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DHBW_SE_Komplexaufgabe" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="DHBW_SE_Komplexaufgabe" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -111,26 +97,82 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../DHBW_SE_Training_Komplexaufgabe" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
-  <component name="RunManager" selected="Gradle.TestImplementation.testImplementation">
-    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Application" />
-      <module name="DHBW_SE_Komplexaufgabe.main" />
+  <component name="RunManager" selected="Gradle.TestControlUnitProxy">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CSVBuilder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="utillity.csvTools.CSVBuilder" />
-      <module name="DHBW_SE_Komplexaufgabe.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="utillity.csvTools.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="DHBW_SE_Komplexaufgabe [testClasses]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="testClasses" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="TestControlUnitProxy" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;TestControlUnitProxy&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="TestImplementation" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;TestImplementation&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
     <configuration name="TestImplementation.testImplementation" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -153,33 +195,12 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="Tests" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="Tests in 'DHBW_SE_Komplexaufgabe.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;Tests&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="Tests.testCSVBuilding" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;Tests.testCSVBuilding&quot;" />
+        <option name="scriptParameters" value="--tests *" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -197,11 +218,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.TestControlUnitProxy" />
+        <item itemvalue="Gradle.TestImplementation" />
+        <item itemvalue="Gradle.Tests in 'DHBW_SE_Komplexaufgabe.test'" />
+        <item itemvalue="Gradle.DHBW_SE_Komplexaufgabe [testClasses]" />
         <item itemvalue="Gradle.TestImplementation.testImplementation" />
-        <item itemvalue="Gradle.Tests" />
-        <item itemvalue="Gradle.Tests.testCSVBuilding" />
-        <item itemvalue="Application.CSVBuilder" />
-        <item itemvalue="Application.Application" />
       </list>
     </recent_temporary>
   </component>
@@ -226,7 +247,35 @@
       <option name="project" value="LOCAL" />
       <updated>1617283000892</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="better employee creation">
+      <created>1617619600619</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1617619600619</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fixed showStatistics">
+      <created>1617619640734</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1617619640734</updated>
+    </task>
+    <task id="LOCAL-00004" summary="small fixes and getter">
+      <created>1617619666926</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1617619666926</updated>
+    </task>
+    <task id="LOCAL-00005" summary="improved TestImplementation">
+      <created>1617619692179</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1617619692179</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,6 +295,21 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="project files" />
-    <option name="LAST_COMMIT_MESSAGE" value="project files" />
+    <MESSAGE value="better employee creation" />
+    <MESSAGE value="fixed showStatistics" />
+    <MESSAGE value="small fixes and getter" />
+    <MESSAGE value="improved TestImplementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved TestImplementation" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/TestImplementation.java</url>
+          <line>79</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
