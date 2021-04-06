@@ -74,7 +74,7 @@ public class ControlUnitProxy implements IControlUnit {
                 throw new UnauthorizedException();
             }
         } else if (command instanceof ShowStatisticsCommand) {
-            if (allowedForShutdown.contains(role)) {
+            if (allowedForShowStatistics.contains(role)) {
                 controlUnit.executeCommand(command);
             } else {
                 throw new UnauthorizedException();

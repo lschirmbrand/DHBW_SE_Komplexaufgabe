@@ -1,24 +1,45 @@
 import configuration.SearchAlgorithm;
-import control.ControlUnit;
+import employee.Administrator;
+import employee.DataAnalyst;
+import employee.Operator;
+import employee.Supervisor;
 import packageSortingCenter.PackageSortingCenter;
-import packageSortingCenter.commands.ChangeAlgorithmCommand;
-import packageSortingCenter.commands.InitCommand;
-import packageSortingCenter.commands.NextCommand;
-import packageSortingCenter.commands.ShowStatisticsCommand;
+import packageSortingCenter.terminal.IDCardReader;
+import packageSortingCenter.terminal.Terminal;
 
 
 public class Application {
     public static void main(String[] args) {
         PackageSortingCenter packageSortingCenter = new PackageSortingCenter();
+        Terminal terminal = packageSortingCenter.getTerminal();
+        IDCardReader cardReader = terminal.getCardReader();
 
-        ControlUnit controlUnit = packageSortingCenter.getControlUnit();
-        controlUnit.executeCommand(new InitCommand());
-        controlUnit.executeCommand(new ChangeAlgorithmCommand(SearchAlgorithm.RABIN_KARP));
-        controlUnit.executeCommand(new NextCommand());
-        controlUnit.executeCommand(new NextCommand());
-        controlUnit.executeCommand(new NextCommand());
-        controlUnit.executeCommand(new NextCommand());
-        controlUnit.executeCommand(new NextCommand());
-        controlUnit.executeCommand(new ShowStatisticsCommand());
+        Supervisor supervisor = new Supervisor("Saruman", "1234", true);
+        Administrator admin = new Administrator("Gandalf", "2345", Administrator.Profile.A);
+        Operator operator = new Operator("Aragorn", "3456");
+        DataAnalyst dataAnalyst = new DataAnalyst("Eldrond", "4567");
+
+
+        cardReader.readCard(supervisor.getIdCard());
+        cardReader.enterPin("1234");
+        terminal.init();
+        terminal.changeSearchAlgorithm(SearchAlgorithm.RABIN_KARP);
+
+        cardReader.readCard(operator.getIdCard());
+        cardReader.enterPin("3456");
+
+        terminal.next();
+        terminal.next();
+        terminal.next();
+        terminal.next();
+        terminal.next();
+
+        cardReader.readCard(dataAnalyst.getIdCard());
+        cardReader.enterPin("4567");
+        terminal.showStatistics();
+
+        cardReader.readCard(admin.getIdCard());
+        cardReader.enterPin("2345");
+        terminal.shutdown();
     }
 }

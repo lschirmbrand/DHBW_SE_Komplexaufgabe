@@ -40,7 +40,7 @@ public class IDCardReader {
         String[] subStrings = plainStripe.split(";");
 
         roleToAuthenticate = switch (subStrings[2]) {
-            case "ADMINISTRATION" -> EmployeeRole.ADMINISTRATOR;
+            case "ADMINISTRATOR" -> EmployeeRole.ADMINISTRATOR;
             case "SUPERVISOR" -> EmployeeRole.SUPERVISOR;
             case "OPERATOR" -> EmployeeRole.OPERATOR;
             case "DATA_ANALYST" -> EmployeeRole.DATA_ANALYST;
