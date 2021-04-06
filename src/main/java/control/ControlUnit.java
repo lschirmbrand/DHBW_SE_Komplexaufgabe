@@ -10,8 +10,8 @@ import events.robot.StartEmptyingEvent;
 import events.sorting_system.SortEvent;
 import packageSortingCenter.PackageSortingCenter;
 import packageSortingCenter.commands.ICommand;
-import packageSortingCenter.sortingSystem.storage.sensor.ITrackLevelListener;
-import packageSortingCenter.unloadingZone.sensor.IUnloadingListener;
+import packageSortingCenter.sortingSystem.storage.ITrackLevelListener;
+import packageSortingCenter.unloadingZone.IUnloadingListener;
 
 import java.util.concurrent.ThreadLocalRandom;
 

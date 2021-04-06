@@ -1,4 +1,4 @@
-package packageSortingCenter.waitingZone;
+package packageSortingCenter;
 
 import vehicle.lkw.LKW;
 

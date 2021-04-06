@@ -1,4 +1,6 @@
-package packageSortingCenter.unloadingZone.sensor;
+package packageSortingCenter.unloadingZone;
+
+import packageSortingCenter.unloadingZone.IUnloadingListener;
 
 import java.util.ArrayList;
 import java.util.List;

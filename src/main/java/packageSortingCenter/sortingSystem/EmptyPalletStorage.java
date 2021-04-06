@@ -1,13 +1,13 @@
-package packageSortingCenter.sortingSystem.storage;
+package packageSortingCenter.sortingSystem;
 
 import packagingElements.pallets.Pallet;
 
 import java.util.Stack;
 
-public class StorageEmptyPallet {
+public class EmptyPalletStorage {
     private final Stack<Pallet> emptyPallets;
 
-    public StorageEmptyPallet() {
+    public EmptyPalletStorage() {
         emptyPallets = new Stack<>();
     }
 

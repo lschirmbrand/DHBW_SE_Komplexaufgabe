@@ -1,7 +1,6 @@
 package packageSortingCenter.unloadingZone;
 
 import control.ControlUnit;
-import packageSortingCenter.unloadingZone.sensor.UnloadingDetector;
 import vehicle.lkw.LKW;
 
 public class UnloadingZone {

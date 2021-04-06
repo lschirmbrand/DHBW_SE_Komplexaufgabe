@@ -1,4 +1,6 @@
-package packageSortingCenter.sortingSystem.storage.sensor;
+package packageSortingCenter.sortingSystem.storage;
+
+import packageSortingCenter.sortingSystem.storage.ITrackLevelListener;
 
 import java.util.ArrayList;
 import java.util.List;

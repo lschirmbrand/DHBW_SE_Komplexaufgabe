@@ -7,7 +7,7 @@ import events.autonomous_vehicle.UnloadingFinishedEvent;
 import events.autonomous_vehicle.UnloadEvent;
 import packageSortingCenter.PackageSortingCenter;
 import packageSortingCenter.StorageArea;
-import packageSortingCenter.parkingZoneAutonom.ParkingZone;
+import packageSortingCenter.ParkingZone;
 import packagingElements.pallets.Pallet;
 import vehicle.lkw.LKW;
 import vehicle.lkw.LKWTrailer;

@@ -1,4 +1,4 @@
-package packageSortingCenter.sortingSystem.storage.sensor;
+package packageSortingCenter.sortingSystem.storage;
 
 public interface ITrackLevelListener {
     void trackFull();

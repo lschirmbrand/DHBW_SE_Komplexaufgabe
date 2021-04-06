@@ -1,4 +1,4 @@
-package packageSortingCenter.parkingZoneAutonom;
+package packageSortingCenter;
 
 import vehicle.autonomous_vehicle.AutonomousVehicle;
 

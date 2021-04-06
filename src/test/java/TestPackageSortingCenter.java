@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test;
 import packageSortingCenter.PackageSortingCenter;
 import packageSortingCenter.StorageArea;
 import packageSortingCenter.commands.InitCommand;
-import packageSortingCenter.waitingZone.WaitingZone;
+import packageSortingCenter.WaitingZone;
 import vehicle.autonomous_vehicle.AutonomousVehicle;
 import vehicle.lkw.LKW;
 

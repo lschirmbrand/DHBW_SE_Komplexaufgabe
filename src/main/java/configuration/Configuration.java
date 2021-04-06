@@ -1,7 +1,5 @@
 package configuration;
 
-import utillity.encryption.EncryptionStrategy;
-
 public enum Configuration {
     instance;
 

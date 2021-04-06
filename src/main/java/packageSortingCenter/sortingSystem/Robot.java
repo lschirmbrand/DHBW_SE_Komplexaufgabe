@@ -1,12 +1,9 @@
-package packageSortingCenter.sortingSystem.roboter;
+package packageSortingCenter.sortingSystem;
 
 import com.google.common.eventbus.Subscribe;
 import events.Subscriber;
 import events.robot.StartEmptyingEvent;
 import packageSortingCenter.StorageArea;
-import packageSortingCenter.sortingSystem.SortingSystem;
-import packageSortingCenter.sortingSystem.storage.StorageEmptyBox;
-import packageSortingCenter.sortingSystem.storage.StorageEmptyPallet;
 import packageSortingCenter.sortingSystem.storage.StorageTrack;
 import packagingElements.boxes.Box;
 import packagingElements.packages.Package;
@@ -26,8 +23,8 @@ public class Robot extends Subscriber {
     @Subscribe
     public void receive(StartEmptyingEvent event) {
         List<StorageTrack> tracks = sortingSystem.getStorageTracks();
-        StorageEmptyBox storageEmptyBox = sortingSystem.getStorageEmptyBox();
-        StorageEmptyPallet storageEmptyPallet = sortingSystem.getStorageEmptyPallet();
+        EmptyBoxStorage emptyBoxStorage = sortingSystem.getStorageEmptyBox();
+        EmptyPalletStorage emptyPalletStorage = sortingSystem.getStorageEmptyPallet();
         int trackIndex = 0;
 
         Pallet pallet;
@@ -49,11 +46,11 @@ public class Robot extends Subscriber {
                                 }
                             }
                         }
-                        storageEmptyBox.store(boxes[i][j][k]);
+                        emptyBoxStorage.store(boxes[i][j][k]);
                     }
                 }
             }
-            storageEmptyPallet.store(pallet);
+            emptyPalletStorage.store(pallet);
         }
     }
 }

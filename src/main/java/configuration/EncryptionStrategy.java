@@ -1,4 +1,4 @@
-package utillity.encryption;
+package configuration;
 
 public enum EncryptionStrategy {
     AES, DES
