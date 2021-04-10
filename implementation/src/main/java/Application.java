@@ -6,10 +6,19 @@ import employee.Supervisor;
 import packageSortingCenter.PackageSortingCenter;
 import packageSortingCenter.terminal.IDCardReader;
 import packageSortingCenter.terminal.Terminal;
+import utillity.csvTools.CSVBuilder;
+
+import java.io.File;
 
 
 public class Application {
     public static void main(String[] args) {
+
+        File temp = new File("base_package.csv");
+        if(!temp.exists()){
+            CSVBuilder.main();
+        }
+
         PackageSortingCenter packageSortingCenter = new PackageSortingCenter();
         Terminal terminal = packageSortingCenter.getTerminal();
         IDCardReader cardReader = terminal.getCardReader();

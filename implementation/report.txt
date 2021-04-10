@@ -1,7 +1,7 @@
-Date and Time: Sat Apr 10 11:54:25 CEST 2021
+Date and Time: Sat Apr 10 12:09:58 CEST 2021
 Number of dispatched LKW: 5
 Grouped Categories & Amount:
-NORMAL: 19237
-EXPRESS: 3585
+NORMAL: 19270
+EXPRESS: 3552
 VALUE: 1178
 Number of dangerous Packages: 4
