@@ -10,8 +10,8 @@ import packageSortingCenter.sortingSystem.sortingTracks.SortingTrack;
 import packageSortingCenter.sortingSystem.sortingTracks.SortingTrackExpress;
 import packageSortingCenter.sortingSystem.sortingTracks.SortingTrackNormal;
 import packageSortingCenter.sortingSystem.sortingTracks.SortingTrackValue;
-import packageSortingCenter.sortingSystem.storage.StorageTrack;
 import packageSortingCenter.sortingSystem.storage.ITrackLevelListener;
+import packageSortingCenter.sortingSystem.storage.StorageTrack;
 import packagingElements.packages.Package;
 
 import java.util.ArrayList;

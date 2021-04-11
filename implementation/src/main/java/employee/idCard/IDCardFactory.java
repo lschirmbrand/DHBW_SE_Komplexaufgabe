@@ -2,7 +2,6 @@ package employee.idCard;
 
 import configuration.Configuration;
 import employee.Employee;
-import employee.EmployeeRole;
 import utillity.encryption.AESEncryption;
 import utillity.encryption.DESEncryption;
 

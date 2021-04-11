@@ -1,9 +1,10 @@
 import configuration.Configuration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import utillity.csvTools.CSVBuilder;
 import utillity.csvTools.CSVReader;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestCSVUtils {
 

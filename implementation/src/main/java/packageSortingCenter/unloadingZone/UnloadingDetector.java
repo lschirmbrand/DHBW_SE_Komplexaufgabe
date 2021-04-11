@@ -1,15 +1,13 @@
 package packageSortingCenter.unloadingZone;
 
-import packageSortingCenter.unloadingZone.IUnloadingListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class UnloadingDetector {
 
     private final List<IUnloadingListener> listenerList;
-    private boolean activated = true;
     private final int zoneID;
+    private boolean activated = true;
 
     public UnloadingDetector(int zoneID) {
         this.zoneID = zoneID;

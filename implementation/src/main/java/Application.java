@@ -15,7 +15,7 @@ public class Application {
     public static void main(String[] args) {
 
         File temp = new File("base_package.csv");
-        if(!temp.exists()){
+        if (!temp.exists()) {
             CSVBuilder.main();
         }
 

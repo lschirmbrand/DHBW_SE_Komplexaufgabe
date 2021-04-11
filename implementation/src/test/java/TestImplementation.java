@@ -15,9 +15,9 @@ public class TestImplementation {
 
     @Test
     @DisplayName("Test the complete Implementation")
-    public void testImplementation(){
+    public void testImplementation() {
         File temp = new File("base_package.csv");
-        if(!temp.exists()){
+        if (!temp.exists()) {
             CSVBuilder.main();
         }
 
